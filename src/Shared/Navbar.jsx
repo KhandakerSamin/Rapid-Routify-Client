@@ -53,7 +53,7 @@ const NavBar = () => {
     </>
 
     return (
-        <div className="drawer max-w-screen-2xl fix z-10 mx-auto">
+        <div className="drawer max-w-screen-2xl fixed z-10 mx-auto">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}

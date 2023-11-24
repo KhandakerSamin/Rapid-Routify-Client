@@ -5,6 +5,8 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import img from '../../assets/Image/865ec733e6fd6fec84763f7cb494c772.gif'
+import toast, { Toaster } from 'react-hot-toast';
+import SocialLogin from '../../Components/SocialLogin';
 // import Swal from 'sweetalert2';
 // import useAxiosPublic from '../../hooks/useAxiosPublic';
 
@@ -12,51 +14,59 @@ const Register = () => {
 
     // const axiosPublic = useAxiosPublic()
 
-    // const bannerStyle = {
-    //     backgroundImage: `url(${bgImg})`,
-    // }
     const { createUser, updateUserProfile } = useContext(AuthContext)
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm()
     const onSubmit = (data) => {
 
-        // console.log(data)
+        console.log(data)
+        
 
-        // createUser(data.email, data.password)
-        //     .then(res => {
-        //         const newUser = res.user
-        //         console.log(newUser)
-        //         updateUserProfile(data.name, data.photoURL)
-        //             .then(() => {
-        //                 // create user entry in the database 
-        //                 const userInfo = {
-        //                     name: data.name,
-        //                     email: data.email
-        //                 }
-        //                 axiosPublic.post('/users', userInfo)
-        //                     .then(res => {
-        //                         if (res.data.insertedId) {
-        //                             console.log('user added to the database');
-        //                             Swal.fire({
-        //                                 title: "Congratulations!",
-        //                                 text: "You have created your accunt successfully",
-        //                                 icon: "success"
-        //                             });
-        //                             reset();
-        //                             navigate('/')
-        //                         }
-        //                     })
-
-        //             })
-        //             .catch(error => console.log(error))
-        //     })
+        createUser(data.email, data.password)
+            .then(res => {
+                const newUser = res.user
+                console.log(newUser)
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        // create user entry in the database 
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            role: data.role,
+                        }
+                        console.log(userInfo);
+                        // axiosPublic.post('/users', userInfo)
+                        //     .then(res => {
+                        //         if (res.data.insertedId) {
+                        //             console.log('user added to the database');
+                        //             Swal.fire({
+                        //                 title: "Congratulations!",
+                        //                 text: "You have created your accunt successfully",
+                        //                 icon: "success"
+                        //             });
+                        //             reset();
+                        //             navigate('/')
+                        //         }
+                        //     })
+                        toast.success('Successfully Created Account')
+                    })
+                    
+                    .catch(error => {
+                        if (error.code === 'auth/email-already-in-use') {
+                            toast.error("Email is already in use")
+                            console.log('Email is already in use. Please use a different email.');
+                            // You might also inform the user in your UI.
+                        } else {
+                            console.error(error);
+                        }
+                    })
+            })
 
     }
 
@@ -64,7 +74,7 @@ const Register = () => {
 
 
     return (
-        <div className=' will-change-scroll flex  items-center h-screen' >
+        <div className='  flex pt-44 pb-44  items-center h-full' >
 
             <Helmet>
                 <title>
@@ -72,10 +82,12 @@ const Register = () => {
                 </title>
             </Helmet>
 
-            <div className='max-w-screen-xl bg-[#eaeae9] md:min-w-[1200px] shadow-2xl min-h-[700px] flex flex-row-reverse mx-auto items-center' >
+            <div><Toaster /></div>
+
+            <div className='max-w-screen-xl bg-[#eaeae9] md:min-w-[1000px] shadow-2xl min-h-[700px] flex flex-row-reverse mx-auto items-center' >
                 <div className='w-1/2  h-full'>
                     <div className='h-[600px] mx-auto flex items-center w-full'>
-                        <img className='h-[700px]' src={img} alt="" />
+                        <img className='h-[701px]' src={img} alt="" />
                     </div>
                 </div>
                 <div className='w-1/2 px-28'>
@@ -83,22 +95,14 @@ const Register = () => {
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Namel</span>
+                                <span className="label-text">Name</span>
                             </label>
                             <input {...register("name", { required: true })} type="text" placeholder="Name" className="input max-w-lg  input-bordered"
                                 name='name'
                             />
                             {errors.name && <span className='text-red-600'>Name field is required</span>}
                         </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo URL</span>
-                            </label>
-                            <input {...register("photoUrl", { required: true })} type="text" placeholder="Photo URL" className="input input-bordered max-w-lg  "
-                                name='photoUrl'
-                            />
-                            {errors.photoUrl && <span className='text-red-600'>Photo URL is required</span>}
-                        </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -128,6 +132,30 @@ const Register = () => {
                             {errors.password?.type === 'maxLength' && <span className='text-red-600'>Password length must be less then 20 </span>}
                             {errors.password?.type === 'pattern' && <span className='text-red-600'>Must have upper case , lower case , number, and one special character</span>}
                         </div>
+                        <div className=" flex justify-between items-center gap-x-2">
+                            <div className='form-control'>
+                                <label className="label">
+                                    <span className="label-text">Photo URL</span>
+                                </label>
+                                <input {...register("photoUrl", { required: true })} type="text" placeholder="Photo URL" className="input input-bordered w-[265px]  "
+                                    name='photoUrl'
+                                />
+                                {errors.photoUrl && <span className='text-red-600'>Photo URL is required</span>}
+                            </div>
+                            <div className='form-control'>
+                                <div className="form-control w-full max-w-xs">
+                                    <label className="label">
+                                        <span className="label-text">Select Your Role</span>
+                                    </label>
+                                    <select {...register("role", { required: true })} defaultValue='default' className="select select-bordered">
+                                        <option value='default' disabled >Select Role</option>
+                                        <option value='user'>Normal User</option>
+                                        <option>Delivery Man</option>
+                                    </select>
+                                </div>
+                                {errors.role && <span className='text-red-600'>Role is required</span>}
+                            </div>
+                        </div>
                         <div>
 
                         </div>
@@ -135,13 +163,10 @@ const Register = () => {
                         <Link to='/login'><p className='text-center text-[#315098] font-bold my-3'>Already registered? Go to log in</p></Link>
                         <p className='text-center'>Or sign up with</p>
 
-
-                            {/* Social login btn
-
-                            <SocialLogin></SocialLogin> */}
-
-                        
                     </Form>
+                         {/* Social login btn */}
+
+                            <SocialLogin></SocialLogin> 
                 </div>
             </div>
         </div>
