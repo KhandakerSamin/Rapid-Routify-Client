@@ -1,55 +1,66 @@
-import logo from '../assets/Image/logo.png'
+import { NavLink } from 'react-router-dom';
+import logo from '../assets/Image/logo-1.png'
+import useAuth from '../Hooks/useAuth';
+import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { MdDarkMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
+import { IoMdNotifications } from "react-icons/io";
+
 const NavBar = () => {
 
+    const { user, logOut } = useAuth()
+    const [theme, setTheme] = useState("light");
 
-    // const handleLogOut = () => {
-    //     Swal.fire({
-    //         title: "Are you sure to log out?",
-    //         text: "Once you logout you have to login again",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Log Out!"
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             logOut()
-    //                 .then(res => console.log(res))
-    //             Swal.fire({
-    //                 title: "Logged Out!",
-    //                 text: "Your Account logged Out Successfully",
-    //                 icon: "success"
-    //             });
-    //         }
-    //     });
-    // }
+
+
+    const toggleTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme);
+        document.documentElement.setAttribute("data-theme", newTheme);
+    };
+
+
+    const handleLogOut = () => {
+        Swal.fire({
+            title: "Are you sure to log out?",
+            text: "Once you logout you have to login again",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Log Out!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                    .then(res => console.log(res))
+                Swal.fire({
+                    title: "Logged Out!",
+                    text: "Your Account logged Out Successfully",
+                    icon: "success"
+                });
+            }
+        });
+    }
 
 
     const navLinks = <>
-        {/* <Link to='/' ><li><a>HOME</a></li></Link>
-        <Link to='/contactUs'><li><a>CONTACT US</a></li>
-        </Link>
-        <Link to='/dashboard'><li><a>DASHBOARD</a></li></Link>
-        <Link to='/menu'><li><a>OUR MENU</a></li></Link>
-        <Link to='/order/Salads'><li><a>OUR SHOP</a></li></Link>
-        <Link to='/dashboard/carts'>
-            <div className="relative">
-                <img className="h-10 w-10 rounded-xl" src={icon} alt="" />
-                <div className="badge h-6 w-6 rounded-full text-white font-bold bg-green-500 border-none  absolute top-5 left-6">{cart.length}</div>
-            </div>
-        </Link>
-        {
-            user ? <button onClick={handleLogOut}><Link><li><a>Log Out</a></li></Link></button>
-                : <Link to='/login'><li><a>Log in</a></li></Link>
-        } */}
-        <li><a>HOME</a></li>
-        <li><a>DASHBOARD</a></li>
-        <li><a><button className="">
-            Inbox
-            <div className="badge badge-secondary ml-2">+99</div>
-        </button></a></li>
-        <li><a>LOGIN</a></li>
-
+        <li><NavLink to="/" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?
+                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+        }>Home</NavLink></li>
+        <li><NavLink to="/dashboard" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?
+                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+        }>Dashboard</NavLink></li>
+        <li><NavLink to="/about" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?
+                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+        }>About</NavLink></li>
+        <li><NavLink to="/contactUs" className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?
+                "text-yellow-400 text-lg font-bold underline" : "text-lg font-semibold text-white"
+        }>Contact Us</NavLink></li>
     </>
 
     return (
@@ -57,21 +68,73 @@ const NavBar = () => {
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="w-full navbar bg-opacity-40 bg-pink-200 text-black">
-                    <div className="flex-none lg:hidden">
+                <div className="w-full py-4  flex justify-between items-center navbar bg-black bg-opacity-40  text-black">
+                    <div className=" lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </label>
                     </div>
-                    <div className="flex-1 px-2 mx-2">
-                        <img src={logo} className='w-64 h-16' alt="" />
+                    <div className=" px-2 min-w-max mx-2">
+                        <img src={logo} className='min-w-64 h-16' alt="" />
                     </div>
-                    <div className="flex-none hidden lg:block">
-                        <ul className="menu menu-horizontal">
+                    <div className=" hidden ml-72 flex-none  lg:block">
+                        <ul className="menu flex justify-center items-center menu-horizontal">
                             {/* Navbar menu content here */}
                             {navLinks}
                         </ul>
                     </div>
+
+
+                    <div className="drawer flex justify-end mr-4 drawer-end">
+
+                        {/* theme toggle */}
+
+                        <button onClick={toggleTheme} className="pl-2 md:pl-5 normal-case">
+                            {theme === "light" ? <MdDarkMode className='text-3xl text-black mt-1'></MdDarkMode> : <MdLightMode className='text-white text-3xl mt-1'></MdLightMode>}
+                        </button>
+
+                        <div>
+                            {
+                                user ? <>
+                                <div className='relative '>
+                                <IoMdNotifications className='text-3xl  text-white ml-5 mr-7 font-bold' />
+                                <span><p className='absolute top-0 right-4  text-white text-xs bg-yellow-400 p-1 rounded-full'>01</p></span>
+                                </div>
+                                </>
+                                    : <NavLink to='/login'><li className='btn btn-outline'><a>Log in</a></li></NavLink>
+                            }
+                        </div>
+                        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+                        <div className="drawer-content">
+                            {/* Page content here */}
+                            <label htmlFor="my-drawer-4" className="drawer-button ">
+                                {user ?
+                                    <img className='rounded-full w-[35px] md:w-[40px] h-[35px]  md:h-[40px] ' src={user.photoURL} alt='' />
+                                    : <></>
+                                }
+                            </label>
+
+                        </div>
+                        <div className="drawer-side">
+                            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+                            <ul className="menu p-4 space-y-3 w-80 min-h-full bg-base-200 text-base-content">
+                                {/* Sidebar content here */}
+                                <h1 className='text-md font-semibold mx-auto border-b-4 border-black text-base'>Your Profile Info : </h1>
+                                <li className="text-xl font-bold"> <img className='h-24 w-28 mx-auto' src={user?.photoURL} alt='Profile I' /></li>
+                                <li className="text-xl font-bold text-center">{user?.displayName}</li>
+                                <li className="text-xs font-bold text-center">Email: {user?.email}</li>
+                                <NavLink to='/dashboard'><li><a className="text-base btn btn-outline md:text-lg mt-4 font-normal md:font-bold"> Dashboard</a></li></NavLink>
+                                <div className='flex justify-between items-center gap-x-2'>
+                                    <NavLink to='/login'><button className="btn btn-outline  normal-case mt-5 text-base ">Switch Account</button></NavLink>
+                                    {
+                                        user ? <button className='btn btn-outline mt-5 normal-case w-1/2 text-base  ' onClick={handleLogOut}><NavLink><li><a>Log Out</a></li></NavLink></button>
+                                            : <NavLink to='/login'><li><a>Log in</a></li></NavLink>
+                                    }
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div className="drawer-side">

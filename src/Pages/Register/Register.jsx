@@ -4,10 +4,9 @@ import { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
-import img from '../../assets/Image/865ec733e6fd6fec84763f7cb494c772.gif'
+import img from '../../assets/Image/register2.gif'
 import toast, { Toaster } from 'react-hot-toast';
 import SocialLogin from '../../Components/SocialLogin';
-// import Swal from 'sweetalert2';
 // import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Register = () => {
@@ -59,11 +58,11 @@ const Register = () => {
                     
                     .catch(error => {
                         if (error.code === 'auth/email-already-in-use') {
-                            toast.error("Email is already in use")
+                            
                             console.log('Email is already in use. Please use a different email.');
-                            // You might also inform the user in your UI.
                         } else {
                             console.error(error);
+                            toast.error("Email is already in use")
                         }
                     })
             })
@@ -74,7 +73,7 @@ const Register = () => {
 
 
     return (
-        <div className='  flex pt-44 pb-44  items-center h-full' >
+        <div className='  flex   items-center h-full' >
 
             <Helmet>
                 <title>
@@ -84,10 +83,10 @@ const Register = () => {
 
             <div><Toaster /></div>
 
-            <div className='max-w-screen-xl bg-[#eaeae9] md:min-w-[1000px] shadow-2xl min-h-[700px] flex flex-row-reverse mx-auto items-center' >
+            <div className='max-w-screen-xl mt-28 md:min-w-[1000px] shadow-2xl  min-h-[650px] flex flex-row-reverse mx-auto items-center' >
                 <div className='w-1/2  h-full'>
                     <div className='h-[600px] mx-auto flex items-center w-full'>
-                        <img className='h-[701px]' src={img} alt="" />
+                        <img className='h-[650px]' src={img} alt="" />
                     </div>
                 </div>
                 <div className='w-1/2 px-28'>
@@ -150,7 +149,7 @@ const Register = () => {
                                     <select {...register("role", { required: true })} defaultValue='default' className="select select-bordered">
                                         <option value='default' disabled >Select Role</option>
                                         <option value='user'>Normal User</option>
-                                        <option>Delivery Man</option>
+                                        <option value='deliveryMan'>Delivery Man</option>
                                     </select>
                                 </div>
                                 {errors.role && <span className='text-red-600'>Role is required</span>}

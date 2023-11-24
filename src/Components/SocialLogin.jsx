@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 // import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
@@ -16,6 +17,7 @@ const SocialLogin = () => {
                 role: 'user'
             }
             console.log(userInfo);
+            toast.success('Successfully Logged In')
             // axiosPublic.post('/users', userInfo)
             // .then(res => {
             //     console.log(res.data);
@@ -24,7 +26,7 @@ const SocialLogin = () => {
         })
     }
     return (
-        <div className='flex justify-around items-center mx-32 mt-6'>
+        <div className='flex justify-around items-center gap-x-5 mx-32 mt-6'>
             <div >
                 <button className='border-4 border-black rounded-full p-2 text-black'> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M9.69641 13.248C9.62441 13.248 8.04041 13.248 7.32041 13.248C6.93641 13.248 6.81641 13.104 6.81641 12.744C6.81641 11.784 6.81641 10.8 6.81641 9.84001C6.81641 9.45601 6.96041 9.33601 7.32041 9.33601H9.69641C9.69641 9.26401 9.69641 7.87201 9.69641 7.22401C9.69641 6.26401 9.86441 5.35201 10.3444 4.51201C10.8484 3.64801 11.5684 3.07201 12.4804 2.73601C13.0804 2.52001 13.6804 2.42401 14.3284 2.42401H16.6804C17.0164 2.42401 17.1604 2.56801 17.1604 2.90401V5.64001C17.1604 5.97601 17.0164 6.12001 16.6804 6.12001C16.0324 6.12001 15.3844 6.12001 14.7364 6.14401C14.0884 6.14401 13.7524 6.45601 13.7524 7.12801C13.7284 7.84801 13.7524 8.54401 13.7524 9.28801H16.5364C16.9204 9.28801 17.0644 9.43201 17.0644 9.81601V12.72C17.0644 13.104 16.9444 13.224 16.5364 13.224C15.6724 13.224 13.8244 13.224 13.7524 13.224V21.048C13.7524 21.456 13.6324 21.6 13.2004 21.6C12.1924 21.6 11.2084 21.6 10.2004 21.6C9.84041 21.6 9.69641 21.456 9.69641 21.096C9.69641 18.576 9.69641 13.32 9.69641 13.248Z" fill="#444444" />
