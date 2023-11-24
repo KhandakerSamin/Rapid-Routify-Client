@@ -12,7 +12,7 @@ const CountDown = () => {
     return (
         <div className="my-20 bg-slate-100 py-20 shadow-md flex border justify-center w-full items-center ">
 
-            <ScrollTrigger className='w-full mx-10 ' onEnter={() => setCountDown(true)} onExit={() => setCountDown(false)}>
+            <ScrollTrigger className='w-full mx-10 max-w-screen-xl' onEnter={() => setCountDown(true)} onExit={() => setCountDown(false)}>
                 <div className="stats bg-slate-100  w-full ">
 
                     <div className="stat w-full place-items-center">

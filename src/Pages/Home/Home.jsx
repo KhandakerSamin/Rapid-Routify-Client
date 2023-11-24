@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Banner from "./Banner";
 import Feature from "./Feature";
 import CountDown from "./CountDown";
+import TopDeliveryMan from "./TopDeliveryMan";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Banner></Banner>
             <Feature></Feature>
             <CountDown></CountDown>
+            <TopDeliveryMan></TopDeliveryMan>
 
         </div>
     );

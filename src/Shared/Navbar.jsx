@@ -49,7 +49,7 @@ const NavBar = () => {
             isPending ? "pending" : isActive ?
                 "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
         }>Home</NavLink></li>
-        <li><NavLink to="/dashboard" className={({ isActive, isPending }) =>
+        <li><NavLink to="/dashboard/userHome" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
                 "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
         }>Dashboard</NavLink></li>
@@ -64,11 +64,11 @@ const NavBar = () => {
     </>
 
     return (
-        <div className="drawer max-w-screen-2xl fixed z-10 mx-auto">
+        <div className="drawer max-w-screen fixed z-10 mx-auto">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="w-full py-4  flex justify-between items-center navbar bg-black bg-opacity-40  text-black">
+                <div className="w-full py-4 max-w-screen mx-auto  flex justify-between items-center navbar bg-black bg-opacity-40  text-black">
                     <div className=" lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -101,7 +101,7 @@ const NavBar = () => {
                                 <span><p className='absolute top-0 right-4  text-white text-xs bg-yellow-400 p-1 rounded-full'>01</p></span>
                                 </div>
                                 </>
-                                    : <NavLink to='/login'><li className='btn btn-outline'><a>Log in</a></li></NavLink>
+                                    : <NavLink to='/login'><li className='btn text-white ml-3 btn-outline'><a>Log in</a></li></NavLink>
                             }
                         </div>
                         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
