@@ -1,5 +1,9 @@
 
-import bannerImg from '../../assets/Image/Banner.jpg';
+// import bannerImg from '../../assets/Image/banner-1.png';
+// import bannerImg from '../../assets/Image/banner-2.png';
+// import bannerImg from '../../assets/Image/banner-3.png';
+// import bannerImg from '../../assets/Image/banner-4.png';
+import bannerImg from '../../assets/Image/banner-6.png';
 
 const Banner = () => {
     const bannerStyle = {
@@ -9,19 +13,7 @@ const Banner = () => {
     return (
         <div className="h-[700px] w-full bg-cover rounded-none " style={bannerStyle}>
             <div className='pt-24 px-14 md:pl-40 space-y-7'>
-                {/* <h1 className='text-3xl md:text-6xl text-white font-bold text-left mb-4 '>Spice Up Your Palate <br /> with Chili Food's <br /> Culinary Delights!</h1>
-                <p className='font-semibold text-base md:text-lg text-white '>Chili Food: A culinary voyage awaits. Savor fiery flavors  and diverse <br /> cuisines at Chili Food. From mild to hot,  we'll tantalize your taste buds <br /> with an unforgettable dining experience</p>
-                <Link to='/allFoods'>
-
-                </Link>
-                <button className="btn bg-yellow-600 btn-outline border-none text-white normal-case">
-                    <Link to='/allFoods'>
-                        <div className='flex items-center  justify-between'>
-                        See Our Food Items
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                        </div>
-                    </Link>
-                </button> */}
+                
             </div>
 
         </div>

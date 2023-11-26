@@ -16,10 +16,10 @@ const Feature = () => {
                 <div className="w-[450px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img1} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img1} className="w-[250px] h-[100px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >SAME DAY DELIVERY</h1>
+                            <h1 className="text-2xl mb-4 mt-2 font-bold text-left" >SAME DAY DELIVERY</h1>
                             <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>

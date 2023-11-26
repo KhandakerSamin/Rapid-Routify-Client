@@ -1,11 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {  FaAddressBook, FaArrowAltCircleRight, FaDollyFlatbed, FaHeadset, FaHome, FaOutdent, FaUserEdit } from "react-icons/fa";
+import { FaAddressBook, FaUsers, FaArrowAltCircleRight, FaDollyFlatbed, FaHeadset, FaHome, FaOutdent, FaUserEdit, FaBoxOpen } from "react-icons/fa";
+import { TbTruckDelivery } from "react-icons/tb";
+
+
 import logo from '../../src/assets/Image/logo-1.png'
+import useAdmin from "../Hooks/useAdmin";
+import useDeliveryMan from "../Hooks/useDeliveryMan";
 
 const Dashboard = () => {
 
-    // const [cart] = useCart()
-    // const [isAdmin] = useAdmin()
+    const [isAdmin] = useAdmin()
+    const [isDeliveryMan] = useDeliveryMan()
+    console.log(isDeliveryMan);
 
     return (
         <div className="flex ">
@@ -16,52 +22,159 @@ const Dashboard = () => {
                         <img src={logo} alt="" />
                     </div>
 
-                    {/* {
+                    {
                         isAdmin ? <>
+                            <li className="mt-10">
+                                <NavLink to='/dashboard/statistics'>
+                                    <FaAddressBook />
+                                    Statistics
+                                </NavLink>
+                            </li>
                             <li className="">
-                                <NavLink to='/dashboard/adminHome'>
-                                    <FaCartArrowDown />
-                                    Admin Home
+                                <NavLink to='/dashboard/allParcels'>
+                                    <FaBoxOpen />
+                                    All Parcels
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/allDeliveryMan'>
+                                    <TbTruckDelivery />
+                                    All DeliveryMan
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/allUsers'>
+                                    <FaUsers />
+                                    All Users
+                                </NavLink>
+                            </li>
+
+                        </> : isDeliveryMan ? <>
+
+
+                            <li className="mt-10">
+                                <NavLink to='/dashboard/deliveryManHome'>
+                                    <FaAddressBook />
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/myDeliveryList'>
+                                    <FaBoxOpen />
+                                    My Delivery List
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/myReviews'>
+                                    <TbTruckDelivery />
+                                    My Riviews
+                                </NavLink>
+                            </li>
+
+
+                        </> : <>
+
+
+                            <li className=" mt-10">
+                                <NavLink to='/dashboard/userhome'>
+                                    <FaOutdent />
+                                    Overview
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/bookParcel'>
+                                    <FaAddressBook />
+                                    Book A Parcel
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/myParcel'>
+                                    <FaDollyFlatbed />
+                                    My Parcel
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/myProfile'>
+                                    <FaUserEdit />
+                                    My Profile
                                 </NavLink>
                             </li>
 
 
                         </>
-                            :
-                            <>
-                                <li className="">
-                                    <NavLink to='/dashboard/userHome'>
-                                        <FaCartArrowDown />
-                                        User Home
-                                    </NavLink>
-                                </li>
-                            </>
-                    } */}
+                    }
 
-                    <li className=" mt-10">
-                        <NavLink to='/dashboard/userHome'>
-                        <FaOutdent />
+                    {/* <li className=" mt-10">
+                        <NavLink to='/dashboard/userhome'>
+                            <FaOutdent />
                             Overview
                         </NavLink>
                     </li>
                     <li className="">
                         <NavLink to='/dashboard/bookParcel'>
-                        <FaAddressBook />
+                            <FaAddressBook />
                             Book A Parcel
                         </NavLink>
                     </li>
                     <li className="">
                         <NavLink to='/dashboard/myParcel'>
-                        <FaDollyFlatbed />
+                            <FaDollyFlatbed />
                             My Parcel
                         </NavLink>
                     </li>
                     <li className="">
                         <NavLink to='/dashboard/myProfile'>
-                        <FaUserEdit />
-                           My Profile 
+                            <FaUserEdit />
+                            My Profile
                         </NavLink>
                     </li>
+                    <hr />
+
+                    <li className="mt-10">
+                        <NavLink to='/dashboard/deliveryManHome'>
+                            <FaAddressBook />
+                            Home
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink to='/dashboard/myDeliveryList'>
+                            <FaBoxOpen />
+                            My Delivery List
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink to='/dashboard/myReviews'>
+                            <TbTruckDelivery />
+                            My Riviews
+                        </NavLink>
+                    </li>
+                    <hr />
+                    <li className="mt-10">
+                        <NavLink to='/dashboard/statistics'>
+                            <FaAddressBook />
+                            Statistics
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink to='/dashboard/allParcels'>
+                            <FaBoxOpen />
+                            All Parcels
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink to='/dashboard/allDeliveryMan'>
+                            <TbTruckDelivery />
+                            All DeliveryMan
+                        </NavLink>
+                    </li>
+                    <li className="">
+                        <NavLink to='/dashboard/allUsers'>
+                            <FaUsers />
+                            All Users
+                        </NavLink>
+                    </li> */}
+
+
 
 
 
@@ -71,23 +184,25 @@ const Dashboard = () => {
 
                     <li className="">
                         <NavLink to='/'>
-                        <FaHome />
+                            <FaHome />
                             Home
                         </NavLink>
                     </li>
                     <li className="">
                         <NavLink to='/contactUs'>
-                        <FaHeadset />
+                            <FaHeadset />
                             Contact Us
                         </NavLink>
                     </li>
                     <li className="">
                         <NavLink to='/about'>
-                        <FaArrowAltCircleRight />
+                            <FaArrowAltCircleRight />
                             About
                         </NavLink>
                     </li>
                 </ul>
+
+
             </div>
             <div className="flex-1">
                 <Outlet></Outlet>

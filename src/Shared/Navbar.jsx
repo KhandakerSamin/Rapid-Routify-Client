@@ -47,19 +47,21 @@ const NavBar = () => {
     const navLinks = <>
         <li><NavLink to="/" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+                "text-yellow-400 text-lg font-medium  " :  "text-md font-normal text-white"
         }>Home</NavLink></li>
-        <li><NavLink to="/dashboard/userHome" className={({ isActive, isPending }) =>
+
+        <li><NavLink to="/dashboard" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+                "text-yellow-400 text-lg font-medium  " :  "text-lg font-medium text-white"
         }>Dashboard</NavLink></li>
+        
         <li><NavLink to="/about" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-bold underline" :  "text-lg font-semibold text-white"
+                "text-yellow-400 text-lg font-medium " :  "text-lg font-medium text-white"
         }>About</NavLink></li>
         <li><NavLink to="/contactUs" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-bold underline" : "text-lg font-semibold text-white"
+                "text-yellow-400 text-lg font-medium " : "text-lg font-medium text-white"
         }>Contact Us</NavLink></li>
     </>
 
@@ -68,16 +70,16 @@ const NavBar = () => {
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
-                <div className="w-full py-4 max-w-screen mx-auto  flex justify-between items-center navbar bg-black bg-opacity-40  text-black">
+                <div className="w-full py-2 max-w-screen mx-auto px-[150px] flex justify-between items-center navbar bg-black bg-opacity-40  text-black">
                     <div className=" lg:hidden">
                         <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </label>
                     </div>
-                    <div className=" px-2 min-w-max mx-2">
-                        <img src={logo} className='min-w-64 h-16' alt="" />
+                    <div className="  min-w-max mx-2">
+                        <img src={logo} className='min-w-54 h-12' alt="" />
                     </div>
-                    <div className=" hidden ml-72 flex-none  lg:block">
+                    <div className=" hidden ml-64 flex-none  lg:block">
                         <ul className="menu flex justify-center items-center menu-horizontal">
                             {/* Navbar menu content here */}
                             {navLinks}

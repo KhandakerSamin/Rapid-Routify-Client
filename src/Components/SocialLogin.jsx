@@ -1,30 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
-// import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic"
 
 const SocialLogin = () => {
-    const {signInWithGoogle} = useAuth();
-    // const axiosPublic = useAxiosPublic();
     const navigate = useNavigate()
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-        .then(res => {
-            console.log(res.user);
-            const userInfo = {
-                email: res.user?.email,
-                name: res.user?.displayName,
-                role: 'user'
-            }
-            console.log(userInfo);
-            toast.success('Successfully Logged In')
-            // axiosPublic.post('/users', userInfo)
-            // .then(res => {
-            //     console.log(res.data);
-            //     navigate('/');
-            // })
-        })
-    }
+    const axiosPublic = useAxiosPublic()
+    const {signInWithGoogle} = useAuth()
+    const handleGoogleSignIn = async () => {
+        try {
+          const res = await signInWithGoogle();
+          console.log(res.user);
+          const userInfo = {
+            email: res.user?.email,
+            name: res.user?.displayName,
+            role: "user",
+          };
+          console.log(userInfo);
+          const response = await axiosPublic.post("/users", userInfo);
+          console.log(response.data);
+          toast.success("Successfully Logged In");
+          navigate("/");
+        } catch (error) {
+          console.error("Error during Google sign-in:", error);
+          // Handle the error, e.g., show an error toast
+          toast.error("Failed to sign in with Google");
+        }
+      }
+
     return (
         <div className='flex justify-around items-center gap-x-5 mx-32 mt-6'>
             <div >

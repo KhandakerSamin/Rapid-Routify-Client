@@ -47,7 +47,7 @@ const Login = () => {
 
             <div className='max-w-screen-xl  mt-36  md:min-w-[1100px] shadow-2xl max-h-[600px] flex mx-auto items-center' >
                 <div className='w-1/2 h-[600px]'>
-                    <div className='h-[600px] mx-auto flex items-center w-full'>
+                    <div className='h-[600px] mx-auto ml-20 flex items-center w-full'>
                         <img className='' src={img} alt='' />
                     </div>
                 </div>

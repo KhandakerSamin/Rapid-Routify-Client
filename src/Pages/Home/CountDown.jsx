@@ -10,7 +10,7 @@ const CountDown = () => {
     const [countDown, setCountDown] = useState(false)
 
     return (
-        <div className="my-20 bg-slate-100 py-20 shadow-md flex border justify-center w-full items-center ">
+        <div className="mt-24 bg-slate-100 py-16  shadow-md flex border justify-center w-full items-center ">
 
             <ScrollTrigger className='w-full mx-10 max-w-screen-xl' onEnter={() => setCountDown(true)} onExit={() => setCountDown(false)}>
                 <div className="stats bg-slate-100  w-full ">
@@ -28,7 +28,7 @@ const CountDown = () => {
                         <div className="stat-title flex justify-between items-center">
                             <TbTruckDelivery className="text-4xl text-black font-bold mr-5" />
                             <h1 className="text-xl font-bold">Percel Deliverd</h1></div>
-                        <div className="stat-value text-secondary">{countDown && <CountUp start={0} end={546} duration={1} delay={0}></CountUp>}</div>
+                        <div className="stat-value text-yellow-400">{countDown && <CountUp start={0} end={546} duration={1} delay={0}></CountUp>}</div>
                     </div>
 
                     <div className="stat place-items-center">
