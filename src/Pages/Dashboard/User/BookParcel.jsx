@@ -81,6 +81,9 @@ const BookParcel = () => {
         const updated = {
             phone: phone
         }
+
+
+        
         axiosPublic.patch(`/update-booking/${user.email}`, updated)
         
         axiosPublic.post('/parcels', newParcel)

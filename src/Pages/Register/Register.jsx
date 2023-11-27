@@ -108,7 +108,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div className='w-1/2 px-16'>
-                    <h1 className='text-4xl font-bold text-center '>Sign Up</h1>
+                    <h1 className='text-4xl font-bold text-center '>Register Now</h1>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control">
                             <label className="label">
@@ -202,7 +202,7 @@ const Register = () => {
 
 
 
-                        <button type='submit' className='w-full mt-8 btn bg-[#315098] hover:bg-blue-700 text-white text-xl font-bold text-center rounded-lg '>Sign Up</button>
+                        <button type='submit' className='w-full mt-8 btn bg-[#315098] hover:bg-blue-700 text-white text-xl font-bold text-center rounded-lg '>Register</button>
 
 
                         <Link to='/login'><p className='text-center text-[#315098] font-bold my-3'>Already registered? Go to log in</p></Link>

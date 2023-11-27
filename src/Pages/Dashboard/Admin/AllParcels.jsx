@@ -24,21 +24,23 @@ const AllParcels = () => {
     });
 
     const [selectedParcel, setSelectedParcel] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [statusFilter, setStatusFilter] = useState('');
 
     const handleManage = (event) => {
         event.preventDefault();
         const deliveryManId = event.target.deliveryManId.value;
-        const aproximateDate = event.target.aproximateDate.value;
-        const assignData = { aproximateDate, deliveryManId };
+        const approximateDate = event.target.approximateDate.value;
+        const assignData = { approximateDate, deliveryManId };
+        console.log(approximateDate);
+        console.log(assignData);
 
         axiosPublic.patch(`/allParcels/${selectedParcel._id}`, assignData)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
                     console.log('Parcel updated in the database');
-                    // Close the modal or perform any other actions after successful update
-                    // You can use state to manage the modal's visibility
                     document.getElementById('my_modal').close();
-                    refetch(); // Optionally, refetch data after updating
+                    refetch();
                 }
             })
             .catch(err => {
@@ -51,13 +53,48 @@ const AllParcels = () => {
         document.getElementById('my_modal').showModal();
     };
 
+  const filteredParcels = parcels.filter((parcel) =>
+    parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
+);
+
+
+
+
+
     return (
-        <div className="mx-10">
+        <div className="mx-10 mb-16">
             <SectionTitle heading={'All'} headingBold={'Parcels'} subHeading={'All your parcels are here | Manage Them Sir '}></SectionTitle>
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
+                <div className="flex items-center mt-4">
+                    <label className="label">
+                        <span className="label-text text-blue-900 font-bold">Search Parcel</span>
+                    </label>
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search By Name"
+                        className="input bg-slate-600 input-bordered w-full max-w-full"
+                    />
+                    <label className="label ml-4">
+                        <span className="label-text text-blue-900 font-bold">Filter by Status</span>
+                    </label>
+                    <select
+                        className="select bg-slate-600 w-full flex justify-center select-bordered"
+                        value={statusFilter}
+                        onChange={(e) => setStatusFilter(e.target.value)}
+                    >
+                        <option value="">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="On The Way">On The Way</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cenceled">Cenceled</option>
+                    </select>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">
-                    <thead className="dark:bg-gray-700">
+                        <thead className="dark:bg-gray-700">
                             <tr className="text-left">
                                 <th className="p-3">SL</th>
                                 <th className="p-3">Booked By</th>
@@ -70,32 +107,19 @@ const AllParcels = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {parcels.map((item, index) => (
+                            {filteredParcels.map((item, index) =>  (
                                 <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
-                                     <td className="p-3">
-                                        {index + 1}
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{item.name}</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{item.phone}</p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{item.bookingDate} </p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p>{item.requestedDate} </p>
-                                    </td>
-                                    <td className="p-3">
-                                        <p className="text-blue-500">{item.price} Tk</p>
-                                    </td>
+                                    <td className="p-3">{index + 1}</td>
+                                    <td className="p-3"><p>{item.name}</p></td>
+                                    <td className="p-3"><p>{item.phone}</p></td>
+                                    <td className="p-3"><p>{item.bookingDate}</p></td>
+                                    <td className="p-3"><p>{item.requestedDate}</p></td>
+                                    <td className="p-3"><p className="text-blue-500">{item.price} Tk</p></td>
                                     <td className="p-3 ">
-                                        <span className=" py-1 font-semibold rounded-md text-yellow-400">
+                                        <span className="py-1 font-semibold rounded-md text-yellow-400">
                                             <span>{item.status}</span>
                                         </span>
                                     </td>
-                                    {/* ... (other table cells) */}
                                     <td className="p-3">
                                         <span className="px-3 py-1">
                                             <button className="btn hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline" onClick={() => openModal(item)}>
@@ -110,7 +134,6 @@ const AllParcels = () => {
                 </div>
             </div>
 
-            {/* Modal */}
             <dialog id="my_modal" className="modal">
                 <div className="modal-box bg-[#1c2536] ml-64">
                     <form method="dialog">
@@ -128,7 +151,7 @@ const AllParcels = () => {
                             <label className="label">
                                 <span className="label-text text-white font-bold">Give the Approximate Delivery Date</span>
                             </label>
-                            <input type="date" name="aproximateDate" placeholder="Type here" className="input bg-slate-600 input-bordered w-full max-w-full" />
+                            <input type="date" name="approximateDate" placeholder="Type here" className="input bg-slate-600 input-bordered w-full max-w-full" />
 
                             <div className="mt-4">
                                 <button type="submit" className="btn btn-outline mr-10 text-white hover:bg-white hover:text-black">Assign</button>

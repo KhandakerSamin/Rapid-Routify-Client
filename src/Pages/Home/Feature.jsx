@@ -8,80 +8,78 @@ import img6 from '../../assets/Image/destination.gif'
 
 const Feature = () => {
     return (
-        <div>
+        <div className="my-10 max-w-screen-xl mx-auto ">
 
             <SectionTitle heading={'Our'} headingBold={'Features'} subHeading={'The support we will provide you'}></SectionTitle>
 
-            <div className="grid grid-cols-3 max-w-screen-xl mx-auto gap-16">
-                <div className="w-[450px] h-[150px]">
+            <div className="grid grid-cols-2 lg:grid-cols-3 mx-10 md:mx-0  gap-6 mr-28 md:mr-6 gap-x-10">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img1} className="w-[250px] h-[100px]" alt="" />
+                            <img src={img1} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-2xl mb-4 mt-2 font-bold text-left" >SAME DAY DELIVERY</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" >SAME DAY DELIVERY</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
-                <div className="w-[450px] h-[150px]">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img2} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img2} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >PAKAGING & STORAGE</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" >PAKAGING & STORAGE</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
-                <div className="w-[450px] h-[150px]">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img3} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img3} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >24/7 Support</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" >24/7 Support</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
-                <div className="w-[450px] h-[150px]">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img4} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img4} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >
-                                ECONOMICAL AIR FREIGHT</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" >ECONOMICAL AIR FREIGHT</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
-                <div className="w-[450px] h-[150px]">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img5} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img5} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >
-                                WAREHOUSING</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" > WAREHOUSING</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
-                <div className="w-[450px] h-[150px]">
+                <div className="w-[400px] h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
-                            <img src={img6} className="w-[350px] h-[150px]" alt="" />
+                            <img src={img6} className="w-[200px] h-[80px]" alt="" />
                         </div>
                         <div>
-                            <h1 className="text-xl mb-4 mt-4 font-bold text-left" >
-                            MULTI-MODAL TRANSPORT</h1>
-                            <p>Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
+                            <h1 className="text-xl mb-2 mt-2 font-bold text-left" >MULTI-MODAL TRANSPORT</h1>
+                            <p className="text-justify">Canvas metri essar. Incubator ramen viral product management drect mailing. such founders gamification Effct.</p>
                         </div>
                     </div>
                 </div>
+                
 
             </div>
 

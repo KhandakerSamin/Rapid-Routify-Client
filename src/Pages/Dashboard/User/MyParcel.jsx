@@ -6,6 +6,7 @@ import { RxUpdate } from "react-icons/rx";
 import { IoStarHalf } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 
 
@@ -14,14 +15,19 @@ const MyParcel = () => {
     const axiosPublic = useAxiosPublic();
 
     const { user } = useAuth()
-
+    
     const { data: parcel = [], refetch } = useQuery({
-        queryKey: ['parcel', user?.email],
+        queryKey: ['parcel'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/parcels?email=${user?.email}`)
+            const res = await axiosPublic.get(`/userBooking?email=${user?.email}`)
             return res.data
         }
     })
+    console.log(parcel);
+    
+        const [selectedParcel, setSelectedParcel] = useState(null);
+        const [searchTerm, setSearchTerm] = useState('');
+        const [statusFilter, setStatusFilter] = useState('');
 
     const renderUpdateButton = (item) => {
         if (item.status === 'Pending') {
@@ -121,12 +127,36 @@ const MyParcel = () => {
         });
     }
 
+    const filteredParcels = parcel.filter((parcel) =>
+    parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
+);
+
 
     return (
         <div className="mx-10">
 
 
             <SectionTitle heading={'Your Booked'} headingBold={'Parcels'} subHeading={'All your pacels here with needed information'}></SectionTitle>
+
+            <div className="flex items-center bg-slate-600 justify-between rounded-lg mt-4 py-3 px-10 mx-4">
+                
+                
+                <label className="label ml-4">
+                    <span className="label-text text-2xl text-white font-bold">Filter by Status</span>
+                </label>
+                <select
+                    className="select bg-white w-full max-w-[450px] text-slate-800  flex justify-center select-bordered"
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                >
+                    <option value="">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="On The Way">On The Way</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cenceled">Cenceled</option>
+                </select>
+            </div>
 
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
 
@@ -151,7 +181,7 @@ const MyParcel = () => {
                         <tbody>
 
                             {
-                                parcel.map((item, index) => <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
+                                filteredParcels.map((item, index) => <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                                     <td className="p-3">
                                         {index + 1}
                                     </td>

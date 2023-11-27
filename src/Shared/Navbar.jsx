@@ -47,26 +47,26 @@ const NavBar = () => {
     const navLinks = <>
         <li><NavLink to="/" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-medium  " :  "text-md font-normal text-white"
+                "text-yellow-600 text-lg font-medium  " :  "text-md font-normal text-white"
         }>Home</NavLink></li>
 
-        <li><NavLink to="/dashboard" className={({ isActive, isPending }) =>
+        {user ? <li><NavLink to="/dashboard" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-medium  " :  "text-lg font-medium text-white"
-        }>Dashboard</NavLink></li>
+                "text-yellow-600 text-lg font-medium  " :  "text-md font-medium text-white"
+        }>Dashboard</NavLink></li> : <> </>}
         
         <li><NavLink to="/about" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-medium " :  "text-lg font-medium text-white"
+                "text-yellow-600 text-lg font-medium " :  "text-md font-medium text-white"
         }>About</NavLink></li>
         <li><NavLink to="/contactUs" className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ?
-                "text-yellow-400 text-lg font-medium " : "text-lg font-medium text-white"
+                "text-yellow-600 text-lg font-medium " : "text-md font-medium text-white"
         }>Contact Us</NavLink></li>
     </>
 
     return (
-        <div className="drawer max-w-screen fixed z-10 mx-auto">
+        <div className="drawer w-full lg:max-w-screen fixed z-10 mx-auto">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
                 {/* Navbar */}
@@ -117,19 +117,19 @@ const NavBar = () => {
                             </label>
 
                         </div>
-                        <div className="drawer-side">
+                        <div className="drawer-side ">
                             <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                            <ul className="menu p-4 space-y-3 w-80 min-h-full bg-base-200 text-base-content">
+                            <ul className="menu p-4 space-y-3 bg-[#1c2536] w-80 min-h-full  text-white ">
                                 {/* Sidebar content here */}
-                                <h1 className='text-md font-semibold mx-auto border-b-4 border-black text-base'>Your Profile Info : </h1>
+                                <h1 className='text-md font-semibold mx-auto border-b-4 border-white text-base'>Your Profile Info : </h1>
                                 <li className="text-xl font-bold"> <img className='h-24 w-28 mx-auto' src={user?.photoURL} alt='Profile I' /></li>
                                 <li className="text-xl font-bold text-center">{user?.displayName}</li>
                                 <li className="text-xs font-bold text-center">Email: {user?.email}</li>
-                                <NavLink to='/dashboard'><li><a className="text-base btn btn-outline md:text-lg mt-4 font-normal md:font-bold"> Dashboard</a></li></NavLink>
+                                <NavLink to='/dashboard'><li><a className="text-base btn btn-outline text-white md:text-lg mt-4 font-normal md:font-bold"> Dashboard</a></li></NavLink>
                                 <div className='flex justify-between items-center gap-x-2'>
-                                    <NavLink to='/login'><button className="btn btn-outline  normal-case mt-5 text-base ">Switch Account</button></NavLink>
+                                    <NavLink to='/login'><button className="btn btn-outline text-white  normal-case mt-5 text-base ">Switch Account</button></NavLink>
                                     {
-                                        user ? <button className='btn btn-outline mt-5 normal-case w-1/2 text-base  ' onClick={handleLogOut}><NavLink><li><a>Log Out</a></li></NavLink></button>
+                                        user ? <button className='btn btn-outline mt-5 normal-case w-1/2 text-white text-base  ' onClick={handleLogOut}><NavLink><li><a>Log Out</a></li></NavLink></button>
                                             : <NavLink to='/login'><li><a>Log in</a></li></NavLink>
                                     }
                                 </div>

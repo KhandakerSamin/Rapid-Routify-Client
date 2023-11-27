@@ -70,12 +70,12 @@ const Login = () => {
                             type='submit'
                             className='w-full mt-8 btn bg-[#315098] hover:bg-blue-700 text-white text-xl font-bold text-center rounded-lg '
                         >
-                            Sign In
+                            Log In
                         </button>
                         <Link to='/register'>
                             <p className='text-center text-blue-900 font-bold my-3'>New here? Create a New Account</p>
                         </Link>
-                        <p className='text-center'>Or sign in with</p>
+                        <p className='text-center'>Or Log in with</p>
                         <SocialLogin></SocialLogin>
                     </form>
                 </div>
