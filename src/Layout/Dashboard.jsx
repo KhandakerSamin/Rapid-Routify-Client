@@ -57,7 +57,7 @@ const Dashboard = () => {
                             <li className="mt-10">
                                 <NavLink to='/dashboard/deliveryManHome'>
                                     <FaAddressBook />
-                                    Home
+                                    Dashboard
                                 </NavLink>
                             </li>
                             <li className="">
@@ -227,12 +227,13 @@ const Dashboard = () => {
                     </li>
                 </ul>
 
-                <div className="flex items-center p-2 mt-12 space-x-4 justify-self-end">
+                <div className="flex items-center p-2 border-2 rounded-lg mt-12 space-x-4 justify-self-end">
                     <img src={user?.photoURL} alt="" className="w-12 h-12 rounded-lg dark:bg-gray-500" />
                     <div>
                         <h2 className="text-sm text-white font-semibold">{user?.displayName}</h2>
+                        
                         <Link to='/dashboard/myProfile'><span className="flex items-center space-x-1">
-                            <a rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">View profile</a>
+                            <a rel="noopener noreferrer" href="#" className="text-sm font-semibold hover:underline dark:text-gray-400">View profile</a>
                         </span></Link>
                     </div>
                 </div>

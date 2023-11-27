@@ -53,10 +53,10 @@ const AllParcels = () => {
         document.getElementById('my_modal').showModal();
     };
 
-  const filteredParcels = parcels.filter((parcel) =>
-    parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
-);
+    const filteredParcels = parcels.filter((parcel) =>
+        parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
+    );
 
 
 
@@ -92,7 +92,7 @@ const AllParcels = () => {
                         <option value="cenceled">Cenceled</option>
                     </select>
                 </div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto ">
                     <table className="min-w-full text-xs">
                         <thead className="dark:bg-gray-700">
                             <tr className="text-left">
@@ -107,7 +107,7 @@ const AllParcels = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredParcels.map((item, index) =>  (
+                            {filteredParcels.map((item, index) => (
                                 <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                                     <td className="p-3">{index + 1}</td>
                                     <td className="p-3"><p>{item.name}</p></td>
