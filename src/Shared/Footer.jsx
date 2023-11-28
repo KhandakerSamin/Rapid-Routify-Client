@@ -1,16 +1,16 @@
 import logo from '../assets/Image/logo-1.png'
 const Footer = () => {
     return (
-        <footer className="py-6 mt-16 dark:bg-gray-800 dark:text-gray-50">
+        <footer className="py-6 mt-16 dark:bg-gray-800  dark:text-gray-50">
         <div className="container px-6 mx-auto space-y-6 divide-y dark:divide-gray-400 md:space-y-12 divide-opacity-50">
-            <div className="grid grid-cols-12 mx-20">
+            <div className="grid grid-cols-12 ml-16 lg:ml-0 lg:mx-[138px]">
                 <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
                     <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 md:justify-start">
                         
-                        <img className='w-[250px] h-[80px] pt-2' src={logo} alt="" />
+                        <img className='w-[250px] h-[80px] pt-2 lg:mr-10' src={logo} alt="" />
                     </a>
                 </div>
-                <div className="col-span-6 text-center md:text-left md:col-span-3">
+                <div className="col-span-6 text-center md:text-left  lg:ml-44 md:col-span-3">
                     <p className="pb-1 text-lg font-medium">Category</p>
                     <h3 className="tracki uppercase dark:text-gray-50">Product</h3>
 				<ul className="space-y-1">
@@ -28,7 +28,7 @@ const Footer = () => {
 					</li>
 				</ul>
                 </div>
-                <div className="col-span-6 text-center md:text-left md:col-span-3">
+                <div className="col-span-6 text-center md:text-left lg:ml-44 md:col-span-3">
                 <h3 className="uppercase dark:text-gray-50">Developers</h3>
 				<ul className="space-y-1">
 					<li>
@@ -43,7 +43,7 @@ const Footer = () => {
 				</ul>
                 </div>
             </div>
-            <div className="grid justify-center mx-20 pt-6 lg:justify-between">
+            <div className="grid justify-center lg:mx-[138px] pt-6 lg:justify-between">
                 <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
                     <span>©2023 All rights reserved</span>
                     <a rel="noopener noreferrer" href="#">

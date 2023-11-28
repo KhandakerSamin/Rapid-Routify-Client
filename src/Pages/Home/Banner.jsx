@@ -1,9 +1,4 @@
-
-// import bannerImg from '../../assets/Image/banner-1.png';
-// import bannerImg from '../../assets/Image/banner-2.png';
-// import bannerImg from '../../assets/Image/banner-3.png';
-// import bannerImg from '../../assets/Image/banner-4.png';
-import bannerImg from '../../assets/Image/banner-11.jpg';
+import bannerImg from '../../assets/Image/banner-111.jpg';
 import animation from '../../../public/Truck delivery service.json'
 import Lottie from 'lottie-react';
 
@@ -16,10 +11,10 @@ const Banner = () => {
         <div className=" lg:h-[700px] w-full bg-cover rounded-none " style={bannerStyle}>
             <div className='flex justify-between items-center'>
 
-                <div className='w-1/2 m-36'>
-                    <h1 className='text-4xl lg:text-7xl font-bold mb-6 pl-2 mt-20 text-yellow-600'>Rapid Routify</h1>
-                    <h3 className='text-xl lg:text-3xl font-medium pl-2 text-white'>Effortless Parcel Delivery, <br /> Fast and Reliable <br /> Logistics Solution.</h3>
-                    <fieldset className="w-full pl-2 mt-6 space-y-1 dark:text-gray-100">
+                <div className='w-1/2 sm:ml-24 lg:m-36'>
+                    <h1 className='text-4xl lg:text-7xl font-bold mb-6 pl-4 mt-16 text-yellow-600'>Rapid Routify</h1>
+                    <h3 className='text-xl lg:text-3xl font-medium pl-4 text-white'>Effortless Parcel Delivery, <br /> Fast and Reliable <br /> Logistics Solution.</h3>
+                    <fieldset className="w-full pl-4 mt-6 space-y-1 dark:text-gray-100">
                         <label for="Search" className="hidden">Search</label>
                         <div className="relative">
                             <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -33,8 +28,8 @@ const Banner = () => {
                         </div>
                     </fieldset>
                 </div>
-                <div className='w-1/2 '>
-                    <Lottie className='w-[400px] h-[400px] lg:w-[600px]  lg:h-[600px]' animationData={animation} ></Lottie>
+                <div className='w-1/2 lg:mr-32 mt-8 lg:mt-0 sm:mr-12 mb-16 '>
+                    <Lottie className='w-[470px] h-[420px] lg:w-[600px]  lg:h-[600px]' animationData={animation} ></Lottie>
                 </div>
             </div>
 

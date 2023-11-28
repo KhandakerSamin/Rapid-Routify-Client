@@ -3,10 +3,31 @@ import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FaCalendarCheck, FaUsers } from "react-icons/fa";
-import logo from '../../assets/Image/calendar-date.png'
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 
 const CountDown = () => {
+
+    const axiosPublic = useAxiosPublic();
+
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/users');
+            return res.data;
+        },
+    });
+
+    const { data: parcels = [] } = useQuery({
+        queryKey: ['parcels'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/parcels');
+            return res.data;
+        },
+    });
+
+    const deliveredParcel = parcels.filter( parcel => parcel.status === 'Delivered')
     const [countDown, setCountDown] = useState(false)
 
     return (
@@ -21,14 +42,14 @@ const CountDown = () => {
                        
                     <FaCalendarCheck className="text-7xl mb-4 text-white font-bold " />
                        <h1 className="text-xl text-white mb-4  font-bold">Percel Booked</h1></div>
-                        <div className="stat-value text-5xl">{countDown && <CountUp start={0} end={672} duration={3} delay={0}></CountUp>}</div>
+                        <div className="stat-value text-5xl">{countDown && <CountUp start={0} end={parcels.length} duration={3} delay={0}></CountUp>}</div>
                     </div>
 
                     <div className="stat place-items-center">
                         <div className="stat-title flex flex-col mb-4 justify-between items-center">
                             <TbTruckDelivery className="text-8xl text-white font-bold mr-5" />
                             <h1 className="text-xl text-white mb-4 font-bold">Percel Deliverd</h1></div>
-                        <div className="stat-value text-5xl text-yellow-400">{countDown && <CountUp start={0} end={546} duration={3} delay={0}></CountUp>}</div>
+                        <div className="stat-value text-5xl text-yellow-400">{countDown && <CountUp start={0} end={deliveredParcel.length} duration={3} delay={0}></CountUp>}</div>
                     </div>
 
                     <div className="stat place-items-center">
@@ -36,7 +57,7 @@ const CountDown = () => {
                        
                             <FaUsers className="text-8xl text-white font-bold  mr-5" />
                             <h1 className="text-xl text-white font-bold">Total Users</h1></div>
-                        <div className="stat-value text-5xl">{countDown && <CountUp start={150} end={2826} duration={3} delay={0}></CountUp>}</div>
+                        <div className="stat-value text-5xl">{countDown && <CountUp start={0} end={users.length} duration={3} delay={0}></CountUp>}</div>
                     </div>
 
                 </div>

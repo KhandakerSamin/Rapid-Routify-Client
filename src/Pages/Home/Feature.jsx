@@ -8,12 +8,12 @@ import img6 from '../../assets/Image/destination.gif'
 
 const Feature = () => {
     return (
-        <div className="my-10 max-w-screen-xl mx-auto ">
+        <div className="my-6 max-w-screen-xl mx-auto ">
 
             <SectionTitle heading={'Our'} headingBold={'Features'} subHeading={'The support we will provide you'}></SectionTitle>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 mx-10 md:mx-0  gap-6 mr-28 md:mr-6 gap-x-10">
-                <div className="w-[400px] h-[150px]">
+            <div className="grid grid-cols-2 lg:grid-cols-3  md:mx-0  gap-6 mx-16 lg:mr-16  md:mr-6 py-7 gap-x-10">
+                <div className="w-[400px] sm:ml-12 lg:ml-0  h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
                             <img src={img1} className="w-[200px] h-[80px]" alt="" />
@@ -24,7 +24,7 @@ const Feature = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[400px] h-[150px]">
+                <div className="w-[400px]   h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
                             <img src={img2} className="w-[200px] h-[80px]" alt="" />
@@ -35,7 +35,7 @@ const Feature = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[400px] h-[150px]">
+                <div className="w-[400px] sm:ml-12 lg:ml-0 h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
                             <img src={img3} className="w-[200px] h-[80px]" alt="" />
@@ -57,7 +57,7 @@ const Feature = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-[400px] h-[150px]">
+                <div className="w-[400px] sm:ml-12 lg:ml-0  h-[150px]">
                     <div className="flex justify-center m-6 items-start">
                         <div>
                             <img src={img5} className="w-[200px] h-[80px]" alt="" />

@@ -1,7 +1,7 @@
 import img1 from '../assets/Image/delivery-1.jpg'
 const Card = () => {
     return (
-        <div className="w-[390px]  overflow-hidden aspect-square relative cursor-pointer group bg-[#F3F3F3] h-[450px]">
+        <div className="w-[390px] border-2 border-slate-800 rounded-xl  overflow-hidden aspect-square relative cursor-pointer group bg-[#F3F3F3] h-[450px]">
             <img className=" object-cover w-full h-[250px] group-hover:scale-110 transition " src={img1} alt="" />
             <div className="absolute right-3 top-3">
                 <p className="text-white bg-slate-900 rounded-xl font-mono font-medium text-sm px-2 py-1 ">Recomended</p>

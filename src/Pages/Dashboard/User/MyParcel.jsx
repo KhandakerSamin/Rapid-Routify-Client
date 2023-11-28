@@ -91,7 +91,7 @@ const MyParcel = () => {
                 <>
                     <button className="btn text-xl hover:bg-yellow-400 text-white btn-square btn-sm btn-outline" onClick={() => document.getElementById('my_modal_3').showModal()}>
                         <IoStarHalf /></button>
-                    <dialog id="my_modal_3" className="modal">
+                    <dialog id="my_modal_3" className="modal ml-32">
                         <div className="modal-box bg-gray-900">
                             <form method="dialog">
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -116,7 +116,7 @@ const MyParcel = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col pt-4 w-full">
-                                    <h1 className="text-white font-semibold text-md text-center my-2">Give Ratings</h1>
+                                    <h1 className="text-white font-semibold text-md text-center my-2">How was your experience ?</h1>
                                         <Rating
                                             style={{ maxWidth: 180 }}
                                             value={rating}

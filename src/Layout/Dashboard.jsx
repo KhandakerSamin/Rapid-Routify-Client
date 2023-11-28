@@ -233,7 +233,7 @@ const Dashboard = () => {
                         <h2 className="text-sm text-white font-semibold">{user?.displayName}</h2>
                         
                         <Link to='/dashboard/myProfile'><span className="flex items-center space-x-1">
-                            <a rel="noopener noreferrer" href="#" className="text-sm font-semibold hover:underline dark:text-gray-400">View profile</a>
+                            <a rel="noopener noreferrer" href="#" className="text-sm font-semibold text-yellow-600 hover:underline  ">View profile</a>
                         </span></Link>
                     </div>
                 </div>
