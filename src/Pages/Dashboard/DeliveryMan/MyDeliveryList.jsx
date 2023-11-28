@@ -7,6 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
+import MapComponent from "./MapComponent";
 
 const MyDeliveryList = () => {
 
@@ -32,6 +33,10 @@ const MyDeliveryList = () => {
             return res.data
         }
     })
+
+    const latitude = 23.9970;
+    const longitude = 91.1093;
+
 
     console.log(parcels);
 
@@ -115,6 +120,9 @@ const MyDeliveryList = () => {
         <div>
             <Toaster></Toaster>
 
+            <h1>Map Example</h1>
+
+
             <SectionTitle heading={'My'} headingBold={'Delivery List'} subHeading={'All your pending delivey list are here'}></SectionTitle>
 
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
@@ -168,9 +176,18 @@ const MyDeliveryList = () => {
                                         <p className="pl-3"> {parcel.receiverPhone} </p>
                                     </td>
                                     <td className="p-1">
-                                        <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline">
+                                        <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline" onClick={() => document.getElementById('my_modal_3').showModal()}>
                                             <FaMapLocationDot />
                                         </button>
+                                        <dialog id="my_modal_3" className="modal">
+                                            <div className="modal-box">
+                                                <form method="dialog">
+                                                    {/* if there is a button in form, it will close the modal */}
+                                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                                </form>
+                                                <MapComponent latitude={latitude} longitude={longitude} />
+                                            </div>
+                                        </dialog>
                                     </td>
                                     <td className="p-1">
                                         {/* <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline">

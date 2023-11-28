@@ -7,6 +7,11 @@ import { useState } from "react";
 const AllParcels = () => {
     const axiosPublic = useAxiosPublic();
 
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    
+
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['parcels'],
         queryFn: async () => {
@@ -14,6 +19,7 @@ const AllParcels = () => {
             return res.data;
         },
     });
+    console.log(parcels);
 
     const { data: deliveryMans = [] } = useQuery({
         queryKey: ['deliveryMans'],
@@ -24,8 +30,8 @@ const AllParcels = () => {
     });
 
     const [selectedParcel, setSelectedParcel] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [statusFilter, setStatusFilter] = useState('');
+    // const [searchTerm, setSearchTerm] = useState('');
+    // const [statusFilter, setStatusFilter] = useState('');
 
     const handleManage = (event) => {
         event.preventDefault();
@@ -53,10 +59,29 @@ const AllParcels = () => {
         document.getElementById('my_modal').showModal();
     };
 
-    const filteredParcels = parcels.filter((parcel) =>
-        parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
-    );
+    // const filteredParcels = parcels.filter((parcel) =>
+    //     parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    //     (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
+    // );
+
+    const handleSearch = () => {
+        // Check if both startDate and endDate are valid dates
+        if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
+            console.error('Start date must be before or equal to end date');
+            return;
+        }
+
+        console.log(startDate, endDate);
+    
+        // Perform the search based on the date range
+        // Use MongoDB $gte and $lte operators to compare data
+        refetch({
+            approximateDate: {
+                $gte: startDate ? new Date(startDate) : null,
+                $lte: endDate ? new Date(endDate) : null,
+            },
+        });
+    };
 
 
 
@@ -66,22 +91,14 @@ const AllParcels = () => {
         <div className="mx-10 mb-16">
             <SectionTitle heading={'All'} headingBold={'Parcels'} subHeading={'All your parcels are here | Manage Them Sir '}></SectionTitle>
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
-                <div className="flex items-center mt-4">
-                    <label className="label">
-                        <span className="label-text text-blue-900 font-bold">Search Parcel</span>
-                    </label>
-                    <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search By Name"
-                        className="input bg-slate-600 input-bordered w-full max-w-full"
-                    />
+                {/* <div className="flex items-center mb-5 bg-slate-600 justify-between rounded-lg mt-4 py-3 px-10 mx-4">
+
+
                     <label className="label ml-4">
-                        <span className="label-text text-blue-900 font-bold">Filter by Status</span>
+                        <span className="label-text text-2xl text-white font-bold">Filter by Status</span>
                     </label>
                     <select
-                        className="select bg-slate-600 w-full flex justify-center select-bordered"
+                        className="select bg-white w-full max-w-[450px] text-slate-800  flex justify-center select-bordered"
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
                     >
@@ -91,6 +108,32 @@ const AllParcels = () => {
                         <option value="delivered">Delivered</option>
                         <option value="cenceled">Cenceled</option>
                     </select>
+                </div> */}
+                <div className="flex items-center mb-5 bg-slate-600 justify-between rounded-lg mt-4 py-3 px-10 mx-4">
+                    <label className="label ml-4">
+                        <span className="label-text text-2xl text-white font-bold">Date Range</span>
+                    </label>
+                    <div className="flex">
+                        <input
+                            type="date"
+                            className="input bg-white w-full max-w-[200px] text-slate-800 input-bordered"
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                        />
+                        <span className="mx-2 text-white">to</span>
+                        <input
+                            type="date"
+                            className="input bg-white w-full max-w-[200px] text-slate-800 input-bordered"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                        />
+                        <button
+                            className="btn btn-primary ml-4"
+                            onClick={handleSearch}
+                        >
+                            Search
+                        </button>
+                    </div>
                 </div>
                 <div className="overflow-x-auto ">
                     <table className="min-w-full text-xs">
@@ -107,7 +150,7 @@ const AllParcels = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredParcels.map((item, index) => (
+                            {parcels.map((item, index) => (
                                 <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                                     <td className="p-3">{index + 1}</td>
                                     <td className="p-3"><p>{item.name}</p></td>
@@ -139,7 +182,7 @@ const AllParcels = () => {
                     <form method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute text-white right-2 top-2" onClick={() => document.getElementById('my_modal').close()}>✕</button>
                     </form>
-                    <div className="form-control w-full max-w-full">
+                    <div className="form-control w-full text-white max-w-full">
                         <form onSubmit={handleManage}>
                             <label className="label">
                                 <span className="label-text text-white font-bold">Choose A Delivery Man</span>

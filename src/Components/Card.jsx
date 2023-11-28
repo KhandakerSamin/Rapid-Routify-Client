@@ -1,13 +1,15 @@
+/* eslint-disable react/prop-types */
 import img1 from '../assets/Image/delivery-1.jpg'
 const Card = () => {
+  
     return (
         <div className="w-[390px] border-2 border-slate-800 rounded-xl  overflow-hidden aspect-square relative cursor-pointer group bg-[#F3F3F3] h-[450px]">
             <img className=" object-cover w-full h-[250px] group-hover:scale-110 transition " src={img1} alt="" />
             <div className="absolute right-3 top-3">
                 <p className="text-white bg-slate-900 rounded-xl font-mono font-medium text-sm px-2 py-1 ">Recomended</p>
             </div>
-            <h1 className="text-left my-4 mx-10 text-xl font-semibold">Delivery Man Name</h1>
-            <h1 className="text-left my-4 mx-10 text-2xl text-yellow-500 font-semibold"><span className="text-black">Parcel Deliverd : </span>17</h1>
+            <h1 className="text-left my-4 mx-10 text-xl font-semibold"> </h1>
+            <h1 className="text-left my-4 mx-10 text-2xl text-yellow-500 font-semibold"><span className="text-black">Parcel Deliverd :</span>17</h1>
             <h1 className="text-left my-4 mx-10 text-xl font-semibold"><div className="flex flex-wrap items-center mt-2 mb-1 space-x-2">
                 <div className="flex">
                     <button type="button" title="Rate 1 stars" aria-label="Rate 1 stars">

@@ -54,6 +54,7 @@ const Register = () => {
                                 email: data.email,
                                 role: data.role,
                                 phone: data.phone,
+                                image:newImageUrl
 
                             }
                             console.log(userInfo);

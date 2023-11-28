@@ -10,13 +10,13 @@ import { useState } from "react";
 import { Rating } from '@smastrom/react-rating'
 
 import '@smastrom/react-rating/style.css'
+import toast, { Toaster } from "react-hot-toast";
 const MyParcel = () => {
 
     const axiosPublic = useAxiosPublic();
 
     const { user } = useAuth()
 
-    const [rating, setRating] = useState(0);
 
 
 
@@ -31,6 +31,47 @@ const MyParcel = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('');
+
+    const [rating, setRating] = useState(0);
+
+    const currentDate = new Date();
+
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // Month is zero-based, so add 1
+    const day = currentDate.getDate();
+
+
+    // Format the date as a string
+    const formattedDate = `${year}-${month}-${day}`;
+
+    
+
+
+    const handleRating = e => {
+        e.preventDefault()
+        const ratingValue = rating
+        const text = e.target.text.value
+        const id = e.target.id.value
+        const newReview = {
+            feedBack: text,
+            ratings: ratingValue,
+            rivewGiver: user?.displayName,
+            reviewGiverImg: user?.photoURL,
+            reviewGivingDate: formattedDate,
+            deliveryManId: id
+        }
+        console.log(newReview);
+
+        axiosPublic.post('/reviews', newReview)
+            .then(res => {
+                if (res.data.insertedId) {
+                    console.log('booking added to the database');
+                    toast.success('Thanks for you feedback !')
+                    
+                }
+            })
+    }
 
     const renderUpdateButton = (item) => {
         if (item.status === 'Pending') {
@@ -115,8 +156,9 @@ const MyParcel = () => {
                                         <span className="text-xl font-bold">{rating}</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-col pt-4 w-full">
-                                    <h1 className="text-white font-semibold text-md text-center my-2">How was your experience ?</h1>
+                                <form onSubmit={handleRating}>
+                                    <div className="flex flex-col pt-4 w-full">
+                                        <h1 className="text-white font-semibold text-md text-center my-2">How was your </h1>
                                         <Rating
                                             style={{ maxWidth: 180 }}
                                             value={rating}
@@ -124,11 +166,15 @@ const MyParcel = () => {
                                             isRequired
                                             className="mx-auto my-2 mb-3"
                                         />
-                                        <textarea rows="3" placeholder="Message..." className="p-4 text-white pt-3 rounded-md resize-none dark:text-gray-100 dark:bg-gray-700"></textarea>
+                                        <input type="text" name="id" value={item.deliveryManId} className="hidden"/>
+
+                                        <textarea rows="3" name="text" placeholder="Message..." className="p-4 text-white pt-3 rounded-md resize-none dark:text-gray-100 dark:bg-gray-700"></textarea>
                                         <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">Leave feedback</button>
-                                </div>
-                                
-                                <h4 className="font-bold pt-3"> Delivery Man Id : {item._id}</h4>
+
+                                    </div>
+                                </form>
+
+                                <h4 className="font-bold pt-3"> Delivery Man Id : {item.deliveryManId}</h4>
                             </div>
                         </div>
                     </dialog></>
@@ -178,9 +224,7 @@ const MyParcel = () => {
 
     return (
         <div className="mx-10">
-
-
-
+            <Toaster></Toaster>
 
             <SectionTitle heading={'Your Booked'} headingBold={'Parcels'} subHeading={'All your pacels here with needed information'}></SectionTitle>
 
@@ -282,9 +326,6 @@ const MyParcel = () => {
                     </table>
                 </div>
             </div>
-
-
-
         </div>
     );
 };

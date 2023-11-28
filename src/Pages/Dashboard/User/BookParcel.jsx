@@ -108,26 +108,11 @@ const BookParcel = () => {
                     <div>
                         <SectionTitle heading={'Book A'} headingBold={'Parcel'} subHeading={'Fill all the info properly please '}></SectionTitle>
 
-                        <div style={bannerStyle} className=" bg-cover  rounded shadow-lg p-8 px-4 md:p-8 mb-6">
+                        <div  className=" bg-slate-900  rounded shadow-lg p-8 px-4 md:p-8 mb-6">
                             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-6">
-                                <div className="lg:col-span-2 flex flex-col mb-3 items-center  text-white">
-                                    <h1 className=" text-2xl font-bold mb-28">Parsonal Details</h1>
-                                    {/* <p>Your Parsonal Info : </p> */}
-                                    <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 mt-5 text-white md:grid-cols-1">
-                                        <div><h1 className="text-lg font-semibold">Name: {user?.displayName}</h1></div>
-                                        <div><h1 className="text-md font-semibold">Email: {user?.email}</h1></div>
-                                    </div>
-
-                                    <div className="mt-32">
-                                        <h1 className="text-lg font-semibold text-center">Your Booking Parcel</h1>
-                                        <h1 className="text-lg font-semibold text-center">Delivery Charge </h1>
-                                        <h1 className="text-xl my-6 text-yellow-500 font-semibold text-center">{weight ? <>{price} Tk Only</> : <>Please Select Weight </>}</h1>
-                                    </div>
-
-
-                                </div>
+                               
                                 {/* User Name */}
-                                <div className="lg:col-span-4 text-white">
+                                <div className="lg:col-span-6 mx-10 my-3 text-white">
                                     <div className="lg:col-span-4 flex flex-col mb-3 justify-center items-center text-white">
                                         <h1 className=" text-2xl font-bold">Booking Details</h1>
                                         <p>Please fill out all the fields.</p>

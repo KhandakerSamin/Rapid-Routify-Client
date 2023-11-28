@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
                     <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 md:justify-start">
                         
-                        <img className='w-[250px] h-[80px] pt-2 lg:mr-10' src={logo} alt="" />
+                        <img className='w-[250px] h-[80px] pt-2 lg:mr-10 lg:ml-36' src={logo} alt="" />
                     </a>
                 </div>
                 <div className="col-span-6 text-center md:text-left  lg:ml-44 md:col-span-3">
