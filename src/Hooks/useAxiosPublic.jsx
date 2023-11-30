@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL:'rapid-routify-server.vercel.app'
+    baseURL:'https://rapid-routify-server.vercel.app'
 })
 
 const useAxiosPublic = () => {

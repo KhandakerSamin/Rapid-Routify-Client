@@ -113,8 +113,8 @@ const BookParcel = () => {
                                
                                 {/* User Name */}
                                 <div className="lg:col-span-6 mx-10 my-3 text-white">
-                                    <div className="lg:col-span-4 flex flex-col mb-3 justify-center items-center text-white">
-                                        <h1 className=" text-2xl font-bold">Booking Details</h1>
+                                    <div className="lg:col-span-4 flex flex-col mb-3 justify-center mb-2 items-center text-white">
+                                        <h1 className=" text-4xl font-bold">Booking Details</h1>
                                         <p>Please fill out all the fields.</p>
                                     </div>
                                     <form onSubmit={handleSubmit}>
@@ -198,7 +198,7 @@ const BookParcel = () => {
 
 
 
-                                            <div className="md:col-span-6">
+                                            <div className="md:col-span-6 mt-5">
                                                 <label >Please Check Before Submit</label>
                                                 <input type="submit" value={'Book This Parcel'} className="h-10 btn btn-outline font-bold  text-xl text-white border mt-1 rounded px-4 w-full " />
                                             </div>

@@ -38,7 +38,7 @@ const Card = () => {
                         </svg>
                     </button>
                 </div>
-                <span className="dark:text-gray-400">3 out of 5</span>
+                <span className="dark:text-gray-400"> out of 5</span>
             </div></h1>
 
         </div>

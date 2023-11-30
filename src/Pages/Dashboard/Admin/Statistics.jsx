@@ -10,7 +10,7 @@ const Statistics = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('rapid-routify-server.vercel.app/parcels');
+                const response = await fetch('https://rapid-routify-server.vercel.app/parcels');
                 const data = await response.json();
                 console.log(data);
                 setBookingData(data);

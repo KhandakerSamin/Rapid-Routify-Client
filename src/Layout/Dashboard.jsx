@@ -7,6 +7,7 @@ import logo from '../../src/assets/Image/logo-1.png'
 import useAdmin from "../Hooks/useAdmin";
 import useDeliveryMan from "../Hooks/useDeliveryMan";
 import useAuth from "../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
 
@@ -17,6 +18,11 @@ const Dashboard = () => {
 
     return (
         <div className="flex ">
+            <Helmet>
+                <title>
+                    Rapid Route | Dashboard
+                </title>
+            </Helmet>
             <div className="w-[280px]  h-[100vh] sticky top-0  p-[35px] bg-[#1c2536] ">
 
                 <ul className="menu text-white  gap-y-3">

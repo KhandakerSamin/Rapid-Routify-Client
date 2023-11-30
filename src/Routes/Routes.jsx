@@ -23,11 +23,13 @@ import DeliveryManRoute from "./DeliveryManRoute";
 import Payment from "../Pages/Dashboard/User/Payment";
 import AllHome from "../Pages/Dashboard/AllHome";
 import PaymentSuccessPage from "../Pages/Dashboard/User/PaymentSuccessPage";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -49,6 +51,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
+        errorElement:<ErrorPage></ErrorPage>,
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
 
@@ -78,12 +81,12 @@ export const router = createBrowserRouter([
             {
                 path:'updateParcel/:id',
                 element:<UpdateParcel></UpdateParcel>,
-                loader: ({params} ) => fetch(`rapid-routify-server.vercel.app/parcels/${params.id}`)
+                loader: ({params} ) => fetch(`https://rapid-routify-server.vercel.app/parcels/${params.id}`)
             },
             {
                 path: 'payment/:id',
                 element: <Payment></Payment> ,
-                loader: ({params} ) => fetch(`rapid-routify-server.vercel.app/parcels/${params.id}`)
+                loader: ({params} ) => fetch(`https://rapid-routify-server.vercel.app/parcels/${params.id}`)
             },
 
             {

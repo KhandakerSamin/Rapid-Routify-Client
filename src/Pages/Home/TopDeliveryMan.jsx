@@ -13,7 +13,7 @@ const TopDeliveryMan = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        const url = "rapid-routify-server.vercel.app/deliveryMans-top?sortField=delivered&sortOrder=desc";
+        const url = "https://rapid-routify-server.vercel.app/deliveryMans-top?sortField=delivered&sortOrder=desc";
         fetch(url)
             .then((res) => res.json())
             .then((responseData) => {
@@ -47,7 +47,7 @@ const TopDeliveryMan = () => {
                             <h1 className="text-left my-4 mx-10 text-2xl text-yellow-500 font-semibold"><span className="text-black">Parcel Deliverd : </span>{deliveryMan.delivered}</h1>
                             <h1 className="text-left my-4 mx-10 text-xl font-semibold"><div className="flex flex-wrap items-center mt-2 mb-1 space-x-2">
                                 
-                                <span className="dark:text-gray-400">3 out of 5</span>
+                                <span className="dark:text-gray-500">{deliveryMan.rating} out of 5</span>
                             </div></h1>
 
                         </div></SwiperSlide>)

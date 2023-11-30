@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../Components/SectionTitle";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { Rating } from 'primereact/rating';
+import { data } from "autoprefixer";
 
 const AllDeliveryMan = () => {
 
@@ -15,7 +16,6 @@ const AllDeliveryMan = () => {
         },
     });
 
-    // console.log(users);
 
     return (
         <div className="mx-10">
@@ -52,12 +52,8 @@ const AllDeliveryMan = () => {
                                         <p>{item.phone}</p>
                                     </td>
                                     <td className="p-3">
-                                        <p className="ml-10">  - </p >
+                                        <p className="ml-10"> {item.delivered}</p >
                                     </td>
-
-
-
-
                                     <td className="p-3">
                                         <Rating className="ml-2" value={5} readOnly cancel={false} />
                                     </td>

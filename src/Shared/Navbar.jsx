@@ -92,7 +92,7 @@ const NavBar = () => {
                         {/* theme toggle */}
 
                         <button onClick={toggleTheme} className="pl-2 md:pl-5 normal-case">
-                            {theme === "light" ? <MdDarkMode className='text-3xl text-black mt-1'></MdDarkMode> : <MdLightMode className='text-white text-3xl mt-1'></MdLightMode>}
+                            {theme === "light" ? <MdDarkMode className='text-3xl text-white mt-1'></MdDarkMode> : <MdLightMode className='text-white text-3xl mt-1'></MdLightMode>}
                         </button>
 
                         <div>
