@@ -27,7 +27,7 @@ const CountDown = () => {
         },
     });
 
-    const deliveredParcel = parcels.filter( parcel => parcel.status === 'Delivered')
+    // const deliveredParcel = parcels?.filter( parcel => parcel?.status === 'Delivered')
     const [countDown, setCountDown] = useState(false)
 
     return (
@@ -45,12 +45,12 @@ const CountDown = () => {
                         <div className="stat-value text-5xl">{countDown && <CountUp start={0} end={parcels.length} duration={3} delay={0}></CountUp>}</div>
                     </div>
 
-                    <div className="stat place-items-center">
+                    {/* <div className="stat place-items-center">
                         <div className="stat-title flex flex-col mb-4 justify-between items-center">
                             <TbTruckDelivery className="text-8xl text-white font-bold mr-5" />
                             <h1 className="text-xl text-white mb-4 font-bold">Percel Deliverd</h1></div>
                         <div className="stat-value text-5xl text-yellow-400">{countDown && <CountUp start={0} end={deliveredParcel.length} duration={3} delay={0}></CountUp>}</div>
-                    </div>
+                    </div> */}
 
                     <div className="stat place-items-center">
                         <div className="stat-title flex flex-col justify-between mb-4 items-center">

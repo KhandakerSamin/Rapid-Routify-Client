@@ -5,9 +5,9 @@ import { MdCloudDone } from "react-icons/md";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
-import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import MapComponent from "./MapComponent";
+import { Toaster } from "react-hot-toast";
 
 const MyDeliveryList = () => {
 
@@ -34,8 +34,6 @@ const MyDeliveryList = () => {
         }
     })
 
-    const latitude = 23.9970;
-    const longitude = 91.1093;
 
 
     console.log(parcels);
@@ -79,10 +77,6 @@ const MyDeliveryList = () => {
 
 
 
-
-
-
-
     const handleCencel = (parcel) => {
         Swal.fire({
             title: "Are you sure to Cencel ??",
@@ -119,9 +113,6 @@ const MyDeliveryList = () => {
     return (
         <div>
             <Toaster></Toaster>
-
-            <h1>Map Example</h1>
-
 
             <SectionTitle heading={'My'} headingBold={'Delivery List'} subHeading={'All your pending delivey list are here'}></SectionTitle>
 
@@ -176,23 +167,25 @@ const MyDeliveryList = () => {
                                         <p className="pl-3"> {parcel.receiverPhone} </p>
                                     </td>
                                     <td className="p-1">
-                                        <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                                        {parcel.status === 'Cenceled' ? <button className="btn ml-3 cursor-not-allowed hover:text-slate-700 text-slate-700 text-xl btn-sm  btn-square btn-outline" onClick={() => document.getElementById('my_modal_3').showModal()}>
                                             <FaMapLocationDot />
-                                        </button>
-                                        <dialog id="my_modal_3" className="modal">
-                                            <div className="modal-box">
+                                        </button> : <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                                            <FaMapLocationDot />
+                                        </button>}
+                                        <dialog id="my_modal_3" className="modal ml-40  text-white ">
+                                            <div className="modal-box bg-slate-800">
                                                 <form method="dialog">
                                                     {/* if there is a button in form, it will close the modal */}
                                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                                 </form>
-                                                <MapComponent latitude={latitude} longitude={longitude} />
+                                                <div className="m-2">
+                                                    <MapComponent latitude={Number(parcel.latitude)} longitude={Number(parcel.longitude)} />
+                                                </div>
                                             </div>
                                         </dialog>
                                     </td>
                                     <td className="p-1">
-                                        {/* <button className="btn ml-3 hover:bg-yellow-400 text-xl btn-sm text-white btn-square btn-outline">
-                                    <RiChatDeleteFill />
-                                </button> */}
+
                                         {parcel.status === 'Cenceled' ? <p className="font-bold  text-red-500">Cenceled</p> : parcel.status === 'Delivered' ? <> <button className="btn ml-3 cursor-not-allowed  text-xl btn-sm text-slate-700 btn-square btn-outline hover:text-slate-800">
                                             <RiChatDeleteFill />
                                         </button></> : <button

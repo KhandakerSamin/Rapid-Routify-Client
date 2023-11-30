@@ -18,8 +18,6 @@ const MyParcel = () => {
     const { user } = useAuth()
 
 
-
-
     const { data: parcel = [], refetch } = useQuery({
         queryKey: ['parcel'],
         queryFn: async () => {
@@ -27,6 +25,8 @@ const MyParcel = () => {
             return res.data
         }
     })
+
+
     console.log(parcel);
 
     const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +45,7 @@ const MyParcel = () => {
     // Format the date as a string
     const formattedDate = `${year}-${month}-${day}`;
 
-    
+
 
 
     const handleRating = e => {
@@ -68,7 +68,7 @@ const MyParcel = () => {
                 if (res.data.insertedId) {
                     console.log('booking added to the database');
                     toast.success('Thanks for you feedback !')
-                    
+
                 }
             })
     }
@@ -166,7 +166,7 @@ const MyParcel = () => {
                                             isRequired
                                             className="mx-auto my-2 mb-3"
                                         />
-                                        <input type="text" name="id" value={item.deliveryManId} className="hidden"/>
+                                        <input type="text" name="id" value={item.deliveryManId} className="hidden" />
 
                                         <textarea rows="3" name="text" placeholder="Message..." className="p-4 text-white pt-3 rounded-md resize-none dark:text-gray-100 dark:bg-gray-700"></textarea>
                                         <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">Leave feedback</button>
@@ -315,9 +315,10 @@ const MyParcel = () => {
 
 
                                     <td className="p-3 ">
-                                        <span className="px-3 py-1 font-semibold rounded-md btn bg-green-600 hover:bg-green-00 border-none btn-outline btn-sm text-white">
-                                            <span>Pay</span>
-                                        </span>
+                                        <Link to={`/dashboard/payment/${item._id}`}>
+                                            <span className="px-3 py-1 font-semibold rounded-md btn bg-green-600 hover:bg-green-00 border-none btn-outline btn-sm text-white">
+                                                <span>Pay</span>
+                                            </span></Link>
                                     </td>
                                 </tr>)
                             }

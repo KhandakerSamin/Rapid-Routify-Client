@@ -17,6 +17,12 @@ import AllDeliveryMan from "../Pages/Dashboard/Admin/AllDeliveryMan";
 import DeliveryManHome from "../Pages/Dashboard/DeliveryMan/DeliveryManHome";
 import MyDeliveryList from "../Pages/Dashboard/DeliveryMan/MyDeliveryList";
 import MyReviews from "../Pages/Dashboard/DeliveryMan/MyReviews";
+import PrivateRoute from '../Routes/PrivateRoute'
+import AdminRoute from "./AdminRoute";
+import DeliveryManRoute from "./DeliveryManRoute";
+import Payment from "../Pages/Dashboard/User/Payment";
+import AllHome from "../Pages/Dashboard/AllHome";
+import PaymentSuccessPage from "../Pages/Dashboard/User/PaymentSuccessPage";
 
 export const router = createBrowserRouter([
     {
@@ -43,10 +49,15 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
 
             // normal users routes:
+
+            {
+                path:'/dashboard',
+                element: <AllHome></AllHome>
+            },
 
             {
                 path:'/dashboard/userhome',
@@ -67,7 +78,17 @@ export const router = createBrowserRouter([
             {
                 path:'updateParcel/:id',
                 element:<UpdateParcel></UpdateParcel>,
-                loader: ({params} ) => fetch(`http://localhost:5000/parcels/${params.id}`)
+                loader: ({params} ) => fetch(`rapid-routify-server.vercel.app/parcels/${params.id}`)
+            },
+            {
+                path: 'payment/:id',
+                element: <Payment></Payment> ,
+                loader: ({params} ) => fetch(`rapid-routify-server.vercel.app/parcels/${params.id}`)
+            },
+
+            {
+                path:'payment-success',
+                element:<PaymentSuccessPage></PaymentSuccessPage>
             },
            
 
@@ -75,38 +96,39 @@ export const router = createBrowserRouter([
 
             {
                 path:'allParcels',
-                element:<AllParcels></AllParcels>
+                element:<AdminRoute><AllParcels></AllParcels></AdminRoute>
             },
             {
                 path:'allParcels/:id',
-                element:<AllParcels></AllParcels>
+                element:<AdminRoute><AllParcels></AllParcels></AdminRoute>
             },
             {
                 path:'statistics',
-                element:<Statistics></Statistics>
+                element:<AdminRoute><Statistics></Statistics></AdminRoute>
             },
             {
                 path:'allUsers',
-                element:<AllUsers></AllUsers>
+                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path:'allDeliveryMan',
-                element:<AllDeliveryMan></AllDeliveryMan>
+                element:<AdminRoute><AllDeliveryMan></AllDeliveryMan></AdminRoute>
             },
+        
             
             // delivery man route : 
 
             {
                 path: 'deliveryManHome',
-                element: <DeliveryManHome></DeliveryManHome>
+                element: <DeliveryManRoute><DeliveryManHome></DeliveryManHome></DeliveryManRoute>
             },
             {
                 path:'myDeliveryList',
-                element:<MyDeliveryList></MyDeliveryList>
+                element:<DeliveryManRoute><MyDeliveryList></MyDeliveryList></DeliveryManRoute>
             },
             {
                 path:'myReviews',
-                element: <MyReviews></MyReviews>
+                element: <DeliveryManRoute><MyReviews></MyReviews></DeliveryManRoute>
             }
 
 

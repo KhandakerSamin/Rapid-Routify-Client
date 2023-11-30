@@ -10,8 +10,6 @@ const AllParcels = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
-    
-
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['parcels'],
         queryFn: async () => {
@@ -30,8 +28,6 @@ const AllParcels = () => {
     });
 
     const [selectedParcel, setSelectedParcel] = useState(null);
-    // const [searchTerm, setSearchTerm] = useState('');
-    // const [statusFilter, setStatusFilter] = useState('');
 
     const handleManage = (event) => {
         event.preventDefault();
@@ -59,56 +55,34 @@ const AllParcels = () => {
         document.getElementById('my_modal').showModal();
     };
 
-    // const filteredParcels = parcels.filter((parcel) =>
-    //     parcel.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    //     (statusFilter ? parcel.status.toLowerCase() === statusFilter.toLowerCase() : true)
-    // );
-
-    const handleSearch = () => {
-        // Check if both startDate and endDate are valid dates
+    const handleSearch = async () => {
         if (startDate && endDate && new Date(startDate) > new Date(endDate)) {
             console.error('Start date must be before or equal to end date');
             return;
         }
 
         console.log(startDate, endDate);
-    
-        // Perform the search based on the date range
-        // Use MongoDB $gte and $lte operators to compare data
-        refetch({
-            approximateDate: {
-                $gte: startDate ? new Date(startDate) : null,
-                $lte: endDate ? new Date(endDate) : null,
-            },
-        });
+
+        try {
+            const searchParams = {
+                startDate: startDate ? new Date(startDate) : null,
+                endDate: endDate ? new Date(endDate) : null,
+            };
+
+            const response = await axiosPublic.post('/parcels/search', searchParams);
+            const searchedParcels = response.data;
+            console.log(searchedParcels);
+
+            // Now you can use the searchedParcels data in your UI as needed
+        } catch (error) {
+            console.error('Error searching parcels:', error);
+        }
     };
-
-
-
-
 
     return (
         <div className="mx-10 mb-16">
             <SectionTitle heading={'All'} headingBold={'Parcels'} subHeading={'All your parcels are here | Manage Them Sir '}></SectionTitle>
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-100">
-                {/* <div className="flex items-center mb-5 bg-slate-600 justify-between rounded-lg mt-4 py-3 px-10 mx-4">
-
-
-                    <label className="label ml-4">
-                        <span className="label-text text-2xl text-white font-bold">Filter by Status</span>
-                    </label>
-                    <select
-                        className="select bg-white w-full max-w-[450px] text-slate-800  flex justify-center select-bordered"
-                        value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
-                    >
-                        <option value="">All</option>
-                        <option value="pending">Pending</option>
-                        <option value="On The Way">On The Way</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="cenceled">Cenceled</option>
-                    </select>
-                </div> */}
                 <div className="flex items-center mb-5 bg-slate-600 justify-between rounded-lg mt-4 py-3 px-10 mx-4">
                     <label className="label ml-4">
                         <span className="label-text text-2xl text-white font-bold">Date Range</span>
@@ -135,7 +109,7 @@ const AllParcels = () => {
                         </button>
                     </div>
                 </div>
-                <div className="overflow-x-auto ">
+                <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">
                         <thead className="dark:bg-gray-700">
                             <tr className="text-left">

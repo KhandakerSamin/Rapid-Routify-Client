@@ -1,6 +1,6 @@
+import React from "react";
 import SectionTitle from "../../../Components/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
-import profileBg from "../../../assets/Image/myProfile-2.png";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { GiConfirmed } from "react-icons/gi";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -9,68 +9,80 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const MyProfile = () => {
-    const {setUser, user } = useAuth();
-    
-    const axiosPublic = useAxiosPublic();
+  const { setUser, user } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
-    const bannerStyle = {
-        backgroundImage: `url(${profileBg})`,
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const image = e.target.image.files[0];
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const image = e.target.image.files[0];
-        console.log(image);
+    const formData = new FormData();
+    formData.append("image", image);
 
-        const formData = new FormData();
+    try {
+      const res = await axiosPublic.post(image_hosting_api, formData);
 
-        formData.append("image", image);
+      if (res.data.success) {
+        const newImageUrl = res.data.data.url;
 
-        const res = await axiosPublic.post(image_hosting_api, formData);
+        const auth = getAuth();
+        await updateProfile(auth.currentUser, { photoURL: newImageUrl });
 
-        if (res.data.success) {
-            const newImageUrl = res.data.data.url;
+        setUser({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: newImageUrl,
+        });
 
-            const auth = getAuth();
-            await updateProfile(auth.currentUser, { photoURL: newImageUrl });
+        console.log('Profile picture updated successfully');
+      } else {
+        console.error('Error uploading image:', res.data.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-            setUser({displayName:user.displayName, email: user.email, photoURL: newImageUrl})
-            
-            console.log('Updated');
+  return (
+    <div className="mx-16">
+      <SectionTitle
+        heading={'My'}
+        headingBold={'Profile'}
+        subHeading={'Your Profile information here '}
+      ></SectionTitle>
 
-        }else{
-            console.log('SOme issue');
-        }
-    };
+      <div className="min-h-[500px] bg-slate-800 text-white rounded-lg shadow-lg p-8 px-4 md:p-8 mb-6">
+        <div className="flex justify-center items-center flex-col mb-6">
+          <img
+            src={user?.photoURL}
+            className="rounded-full h-32 w-32 mx-auto mb-4"
+            alt=""
+          />
+          <h1 className=" font-bold text-2xl mb-2">{user?.displayName}</h1>
+          <p className=" text-sm mb-4">{user?.email}</p>
+          <div className="flex flex-col space-y-2 ">
+            <p>{`Address: ${user?.address || 'N/A'}`}</p>
+            <p>{`Postal Code: ${user?.postalCode || 'N/A'}`}</p>
+            <p>{`Gender: ${user?.gender || 'N/A'}`}</p>
+            <p>{`Phone Number: ${user?.phoneNumber || 'N/A'}`}</p>
+          </div>
+        </div>
 
+        <div className="text-center text-yellow-500 mb-2">
+            <p>For update profile photo Choose photo and click confirm : </p>
+        </div>
 
-    return (
-        <div className="mx-16">
-            <SectionTitle heading={'My'} headingBold={'Profile'} subHeading={'Your Profile informaiton here '}></SectionTitle>
-
-            <div className="bg-cover relative min-h-[500px]   rounded-lg shadow-lg p-8 px-4 md:p-8 mb-6 " style={bannerStyle}>
-                <img src={user?.photoURL} className="w-[175px] right-[175px] top-[110px] h-[175px] rounded-full absolute" alt="" />
-
-                <div className="m-10 mt-24">
-                    <h1 className="text-white font-bold text-4xl ">Name: {user?.displayName}</h1>
-                    <h1 className="text-white  text-2xl mt-3">Email: {user?.email}</h1>
-                    <h1 className="text-white font-bold text-2xl mt-3">Total Bookings : </h1>
-                </div>
-
-                <div className="m-10">
-                    <h1 className="text-white font-bold text-2xl mb-4">Update Your Profile Picture :</h1>
-                    <form onSubmit={handleSubmit} encType="multipart/form-data">
-                        <input name="image" type="file" className="file-input file-input-bordered w-full max-w-xs" />
-                        <h1></h1>
-                        <button className="btn btn-outline text-white mt-4" type="submit">
-                            Confirm
-                            <GiConfirmed className="text-2xl font-bold text-white" />
+        <div className="mt-6">
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className="text-center flex flex-col items-center  justify-center">
+                        <input type="file" className="file-input file-input-bordered file-input-sm w-full max-w-xs" />
+                        <button className="btn btn-outline text-white mt-4 hover:bg-yellow-600 btn-sm" type="submit"> Confirm
+                            <GiConfirmed className="text-2xl font-bold text-white " />
                         </button>
                     </form>
-                </div>
-            </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default MyProfile;

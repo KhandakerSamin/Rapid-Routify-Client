@@ -13,13 +13,9 @@ const Register = () => {
 
     const axiosPublic = useAxiosPublic()
     const navigate = useNavigate()
-
-
     const {  createUser, updateUserProfile } = useContext(AuthContext)
-
     const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
     const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-
 
     const {
         register,
@@ -79,13 +75,7 @@ const Register = () => {
                             }
                         })
                 })
-        } else {
-            console.log('Some issue', res.data.error);
         }
-
-
-
-
     }
 
     // SAMIN123yeasar!

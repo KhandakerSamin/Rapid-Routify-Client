@@ -13,11 +13,10 @@ const TopDeliveryMan = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        const url = "http://localhost:5000/deliveryMans-top?sortField=delivered&sortOrder=desc";
+        const url = "rapid-routify-server.vercel.app/deliveryMans-top?sortField=delivered&sortOrder=desc";
         fetch(url)
             .then((res) => res.json())
             .then((responseData) => {
-                // Slice the first 6 items from the data
                 const slicedData = responseData.slice(0, 5);
                 setData(slicedData);
             });
