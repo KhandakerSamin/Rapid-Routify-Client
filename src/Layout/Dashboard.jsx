@@ -8,6 +8,7 @@ import useAdmin from "../Hooks/useAdmin";
 import useDeliveryMan from "../Hooks/useDeliveryMan";
 import useAuth from "../Hooks/useAuth";
 import { Helmet } from "react-helmet";
+import { IoMdNotifications } from "react-icons/io";
 
 const Dashboard = () => {
 
@@ -54,6 +55,12 @@ const Dashboard = () => {
                                 <NavLink to='/dashboard/allUsers'>
                                     <FaUsers />
                                     All Users
+                                </NavLink>
+                            </li>
+                            <li className="">
+                                <NavLink to='/dashboard/userText'>
+                                <IoMdNotifications />
+                                    Users Messege
                                 </NavLink>
                             </li>
 

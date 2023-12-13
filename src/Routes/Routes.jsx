@@ -24,6 +24,8 @@ import Payment from "../Pages/Dashboard/User/Payment";
 import AllHome from "../Pages/Dashboard/AllHome";
 import PaymentSuccessPage from "../Pages/Dashboard/User/PaymentSuccessPage";
 import ErrorPage from "../Pages/ErrorPage";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import UserText from "../Pages/Dashboard/Admin/UserText";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
             {
                 path: '/about',
                 element: <About></About>
+            },
+            {
+                path:'/contactUs',
+                element:<ContactUs></ContactUs>
             }
         ]
     },
@@ -116,6 +122,10 @@ export const router = createBrowserRouter([
             {
                 path:'allDeliveryMan',
                 element:<AdminRoute><AllDeliveryMan></AllDeliveryMan></AdminRoute>
+            },
+            {
+                path:'userText',
+                element:<AdminRoute><UserText></UserText></AdminRoute>
             },
         
             

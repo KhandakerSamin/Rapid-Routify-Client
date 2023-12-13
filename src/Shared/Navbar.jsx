@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/Image/logo-1.png'
 import useAuth from '../Hooks/useAuth';
 import Swal from 'sweetalert2';
@@ -6,11 +6,16 @@ import { useState } from 'react';
 import { MdDarkMode } from "react-icons/md";
 import { MdLightMode } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
+import useAdmin from '../Hooks/useAdmin';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const NavBar = () => {
 
     const { user, logOut } = useAuth()
     const [theme, setTheme] = useState("light");
+    const [isAdmin] = useAdmin()
+    const axiosPublic = useAxiosPublic()
+    const [notification , setNotification] = useState()
 
 
 
@@ -19,6 +24,13 @@ const NavBar = () => {
         setTheme(newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
     };
+
+    axiosPublic
+      .get('/userText')
+      .then((res) => res.data)
+      .then((data) => {
+        setNotification(data.length)
+      })
 
 
     const handleLogOut = () => {
@@ -97,12 +109,12 @@ const NavBar = () => {
 
                         <div>
                             {
-                                user ? <>
-                                <div className='relative '>
+                                isAdmin ?  <>
+                                <Link to='/dashboard/userText'><div className='relative '>
                                 <IoMdNotifications className='text-3xl  text-white ml-5 mr-7 font-bold' />
-                                <span><p className='absolute top-0 right-4  text-white text-xs bg-yellow-400 p-1 rounded-full'>01</p></span>
-                                </div>
-                                </>
+                                <span><p className='absolute top-0 right-4  text-white text-xs bg-yellow-400 px-2 py-1 rounded-full'>{notification}</p></span>
+                                </div></Link>
+                                </> : user ? <> </>
                                     : <NavLink to='/login'><li className='btn text-white ml-3 btn-outline'><a>Log in</a></li></NavLink>
                             }
                         </div>

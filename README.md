@@ -1,6 +1,7 @@
 # Rapid Routify - A Seamless Delivery Experience
 
-[![Rapid Routify Logo](<https://i.postimg.cc/yYdhRGrH/favicon-1.png" width="200">)](https://rapid-routify.web.app)
+[<img src="https://i.postimg.cc/yYdhRGrH/favicon-1.png" width="200">](https://rapid-routify.web.app)
+[Live Link Here](https://rapid-routify.web.app)
 
 ## Overview
 
