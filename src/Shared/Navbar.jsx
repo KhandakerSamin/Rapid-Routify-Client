@@ -103,7 +103,7 @@ const NavBar = () => {
 
                         {/* theme toggle */}
 
-                        <button onClick={toggleTheme} className="pl-2 md:pl-5 normal-case">
+                        <button onClick={toggleTheme} className="pl-2 md:px-5 normal-case">
                             {theme === "light" ? <MdDarkMode className='text-3xl text-white mt-1'></MdDarkMode> : <MdLightMode className='text-white text-3xl mt-1'></MdLightMode>}
                         </button>
 
@@ -111,7 +111,7 @@ const NavBar = () => {
                             {
                                 isAdmin ?  <>
                                 <Link to='/dashboard/userText'><div className='relative '>
-                                <IoMdNotifications className='text-3xl  text-white ml-5 mr-7 font-bold' />
+                                <IoMdNotifications className='text-3xl  text-white  mr-7 font-bold' />
                                 <span><p className='absolute top-0 right-4  text-white text-xs bg-yellow-400 px-2 py-1 rounded-full'>{notification}</p></span>
                                 </div></Link>
                                 </> : user ? <> </>
